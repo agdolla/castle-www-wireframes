@@ -191,7 +191,7 @@ export default class ProfilePage extends React.Component {
               </StatCard>
               <StatCard>
                 <StatCardNumber>0</StatCardNumber>
-                <StatCardBottom>Subscribers</StatCardBottom>
+                <StatCardBottom>Supporters (?)</StatCardBottom>
               </StatCard>
             </StatSection>
           </ComponentSingleColumn>
