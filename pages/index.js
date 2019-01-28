@@ -111,7 +111,7 @@ const STAFF_TWO = [
   },
   {
     name: 'Dark Souls: 16 Bit Hi Fi',
-    author: 'Rebecca',
+    author: 'Rebekah Cox',
     image: '/static/screenshot-14.png',
     players: getRandomInt(),
   },

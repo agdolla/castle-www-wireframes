@@ -246,7 +246,7 @@ const DOCS_LINKS = [
   },
   {
     title: 'Developer Log: Hiring Artists',
-    author: 'Rebecca Cox',
+    author: 'Rebekah Cox',
     paragraph: 'I was able to rally a few great artists to join us.',
   },
   {
