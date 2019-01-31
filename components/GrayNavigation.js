@@ -37,7 +37,7 @@ const ComponentLink = styled.span`
 
 export default props => {
   return (
-    <ComponentNavigation>
+    <ComponentNavigation style={props.style}>
       <ComponentNavigationLeft>
         <ComponentLogo>Castle</ComponentLogo>
       </ComponentNavigationLeft>

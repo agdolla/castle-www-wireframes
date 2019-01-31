@@ -30,7 +30,7 @@ const ComponentAvatar = styled.span`
   display: inline-flex;
   height: 112px;
   width: 112px;
-  border-radius: 88px;
+  border-radius: 112px;
   background-size: cover;
   background-position: 50% 50%;
 `;
