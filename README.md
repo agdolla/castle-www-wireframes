@@ -48,6 +48,14 @@ https://castle-www-prototype-1-xdpr.onrender.com/@castle/the-castle-manifesto
 
 https://castle-www-prototype-1-xdpr.onrender.com/@castle
 
+**Profile Page A - Creator Profile**
+
+https://castle-www-prototype-1-xdpr.onrender.com/profile-1a
+
+**Profile Page B - Player Profile**
+
+https://castle-www-prototype-1-xdpr.onrender.com/profile-2a
+
 **Game Page**
 
 https://castle-www-prototype-1-xdpr.onrender.com/@gundam-wing-zero-v2/games/example-game
