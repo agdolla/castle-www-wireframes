@@ -24,6 +24,10 @@ I was honored by the Castle team with the privilege to create a set of wireframe
 
 https://castle-www-prototype-1-xdpr.onrender.com/
 
+**Home Page - only four games at the top**
+
+https://castle-www-prototype-1-xdpr.onrender.com/index-1a
+
 **3 Game Home Page**
 
 https://castle-www-prototype-1-xdpr.onrender.com/index-2
