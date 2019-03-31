@@ -1,15 +1,44 @@
 import Head from 'next/head';
+import TextareaAutosize from 'react-textarea-autosize';
 
 import * as React from 'react';
+import * as SVG from '~/common/svg';
 
 import { css, styled } from 'react-emotion';
 
+const STYLES_BUTTON = css`
+  height: 48px;
+  width: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #f3f3f3;
+  cursor: pointer;
+  flex-shrink: 0;
+`;
+
+const STYLES_HEADER_BAR_TEXT = css`
+  min-height: 48px;
+  width: 100%;
+  min-width: 25%;
+  padding: 8px 16px 8px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  box-shadow: 1px 0 0 #3d3d3d;
+`;
+
 const IconButton = props => {
-  return <span>Button</span>;
+  return (
+    <span className={STYLES_BUTTON} style={props.style}>
+      {props.svg}
+    </span>
+  );
 };
 
 const HeaderBarText = props => {
-  return <span>{props.children}</span>;
+  return <span className={STYLES_HEADER_BAR_TEXT}>{props.children}</span>;
 };
 
 // GROUP SLOT
@@ -55,9 +84,12 @@ const RightChatBubble = props => {
 // ---------------------------------------------------------
 
 const STYLES_ACTIONS = css`
-  height: 48px;
+  min-height: 48px;
   width: 100%;
   box-shadow: inset 0 1px 0 #3d3d3d;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const ActionsBar = props => {
@@ -68,14 +100,38 @@ const ActionsBar = props => {
 // ---------------------------------------------------------
 
 const STYLES_HEADER = css`
-  height: 48px;
+  min-height: 48px;
   width: 100%;
   box-shadow: inset 0 -1px 0 #3d3d3d;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const HeaderBar = props => {
   return <header className={STYLES_HEADER}>{props.children}</header>;
 };
+
+const STYLES_INPUT = css`
+  height: 100%;
+  width: 100%;
+  min-width: 25%;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: #f3f3f3;
+  padding: 15px 16px 15px 16px;
+  resize: none;
+  box-shadow: 1px 0 0 #3d3d3d;
+  font-size: 14px;
+  background: transparent;
+
+  :focus {
+    border: 0;
+    outline: 0;
+  }
+`;
 
 // SEARCH INPUT
 // ---------------------------------------------------------
@@ -90,7 +146,14 @@ class SearchInput extends React.Component {
   };
 
   render() {
-    return <input value={this.state.value} onChange={this._handleChange} />;
+    return (
+      <TextareaAutosize
+        className={STYLES_INPUT}
+        placeholder="Search users..."
+        value={this.state.value}
+        onChange={this._handleChange}
+      />
+    );
   }
 }
 
@@ -107,7 +170,14 @@ class ChatInput extends React.Component {
   };
 
   render() {
-    return <input value={this.state.value} onChange={this._handleChange} />;
+    return (
+      <TextareaAutosize
+        className={STYLES_INPUT}
+        placeholder="Type a message..."
+        value={this.state.value}
+        onChange={this._handleChange}
+      />
+    );
   }
 }
 
@@ -226,7 +296,7 @@ export default class IndexPage extends React.Component {
         header={
           <HeaderBar>
             <SearchInput />
-            <IconButton svg={undefined} />
+            <IconButton svg={<SVG.Membership size="20px" />} />
           </HeaderBar>
         }
       >
@@ -237,13 +307,14 @@ export default class IndexPage extends React.Component {
       <SideSectionLayout
         header={
           <HeaderBar>
-            <HeaderBarText>Conversation with Jesse</HeaderBarText> <IconButton />
+            <HeaderBarText>Jesse Ruder</HeaderBarText>{' '}
+            <IconButton svg={<SVG.Settings size="20px" />} />
           </HeaderBar>
         }
         bottom={
           <ActionsBar>
             <ChatInput />
-            <IconButton />
+            <IconButton svg={<SVG.Smile size="20px" />} />
           </ActionsBar>
         }
       >
