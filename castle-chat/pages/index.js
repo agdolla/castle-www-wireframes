@@ -4,6 +4,14 @@ import * as React from 'react';
 
 import { css, styled } from 'react-emotion';
 
+const IconButton = props => {
+  return <span>Button</span>;
+};
+
+const HeaderBarText = props => {
+  return <span>{props.children}</span>;
+};
+
 // GROUP SLOT
 // ---------------------------------------------------------
 
@@ -48,8 +56,8 @@ const RightChatBubble = props => {
 
 const STYLES_ACTIONS = css`
   height: 48px;
-  background: green;
   width: 100%;
+  box-shadow: inset 0 1px 0 #3d3d3d;
 `;
 
 const ActionsBar = props => {
@@ -61,8 +69,8 @@ const ActionsBar = props => {
 
 const STYLES_HEADER = css`
   height: 48px;
-  background: red;
   width: 100%;
+  box-shadow: inset 0 -1px 0 #3d3d3d;
 `;
 
 const HeaderBar = props => {
@@ -134,7 +142,7 @@ const STYLES_SIDE_SECTION_LAYOUT_BOTTOM = css`
 class SideSectionLayout extends React.Component {
   render() {
     return (
-      <div className={STYLES_SIDE_SECTION_LAYOUT}>
+      <div className={STYLES_SIDE_SECTION_LAYOUT} style={this.props.style}>
         {this.props.header ? (
           <div className={STYLES_SIDE_SECTION_LAYOUT_HEADER}>{this.props.header}</div>
         ) : null}
@@ -151,26 +159,28 @@ class SideSectionLayout extends React.Component {
 // ---------------------------------------------------------
 
 const STYLES_LAYOUT_LEFT = css`
-  font-size: 64px;
-  width: 320px;
+  width: 280px;
   flex-shrink: 0;
+  background: #333333;
+  color: #ffffff;
   height: calc(100vh);
-  box-shadow: inset -1px 0 0 #dcdcdc;
-  background: #f3f3f3;
-
+  box-shadow: inset -1px 0 0 #3d3d3d;
   overflow-y: scroll;
+
   ::-webkit-scrollbar {
     width: 0px;
   }
 `;
 
 const STYLES_LAYOUT_MIDDLE = css`
-  width: 320px;
+  width: 280px;
   flex-shrink: 0;
-  background: #f3f3f3;
-  box-shadow: inset -1px 0 0 #dcdcdc;
+  background: #282828;
+  color: #ffffff;
   height: calc(100vh);
+  box-shadow: inset -1px 0 0 #3d3d3d;
   overflow-y: scroll;
+
   ::-webkit-scrollbar {
     width: 0px;
   }
@@ -179,12 +189,11 @@ const STYLES_LAYOUT_MIDDLE = css`
 const STYLES_LAYOUT_RIGHT = css`
   min-width: 20%;
   width: 100%;
-  background: blue;
   height: calc(100vh);
-  overflow-y: scroll;
   background-size: cover;
   background-position: 50% 50%;
   background-image: url('/static/screenshot.gif');
+  overflow-y: scroll;
 
   ::-webkit-scrollbar {
     width: 0px;
@@ -212,8 +221,35 @@ const Layout = props => {
 
 export default class IndexPage extends React.Component {
   render() {
-    const leftElement = <SideSectionLayout header={<ActionsBar>Actions</ActionsBar>} />;
-    const middleElement = <SideSectionLayout header={<HeaderBar>Chat Header</HeaderBar>} />;
+    const leftElement = (
+      <SideSectionLayout
+        header={
+          <HeaderBar>
+            <SearchInput />
+            <IconButton svg={undefined} />
+          </HeaderBar>
+        }
+      >
+        <div>Groups, DMs, Annoucements</div>
+      </SideSectionLayout>
+    );
+    const middleElement = (
+      <SideSectionLayout
+        header={
+          <HeaderBar>
+            <HeaderBarText>Conversation with Jesse</HeaderBarText> <IconButton />
+          </HeaderBar>
+        }
+        bottom={
+          <ActionsBar>
+            <ChatInput />
+            <IconButton />
+          </ActionsBar>
+        }
+      >
+        <div>Conversation</div>
+      </SideSectionLayout>
+    );
 
     return (
       <React.Fragment>

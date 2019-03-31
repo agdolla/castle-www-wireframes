@@ -29,7 +29,6 @@ export default () => injectGlobal`
 
   html, body {
     background: black;
-    color: white;
     font-size: 16px;
     font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica,
     ubuntu, roboto, noto, segoe ui, arial, sans-serif;
