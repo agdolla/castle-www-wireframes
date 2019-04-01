@@ -74,7 +74,7 @@ const STYLES_LEFT_CHAT_BUBBLE_MESSAGE = css`
 `;
 
 const STYLES_LEFT_CHAT_BUBBLE_MESSAGE_TITLE = css`
-  font-size: 12px;
+  font-size: 10px;
   color: #777;
 `;
 
@@ -135,7 +135,7 @@ const STYLES_RIGHT_CHAT_BUBBLE_MESSAGE = css`
 `;
 
 const STYLES_RIGHT_CHAT_BUBBLE_MESSAGE_TITLE = css`
-  font-size: 12px;
+  font-size: 10px;
   color: #777;
   text-align: right;
 `;

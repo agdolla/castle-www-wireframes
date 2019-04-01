@@ -46,12 +46,69 @@ export const users = {
     profilePhoto: '/static/assets/avatar-4.png',
     createdAt: '2018-08-13 01:16:21.077+00',
   },
+
+  dog: {
+    id: 'user-7',
+    username: 'dog',
+    name: 'A friendly dog',
+    profilePhoto: '/static/assets/a2.jpg',
+    createdAt: '2018-08-13 01:16:21.077+00',
+  },
 };
 
 export const chats = {
   normal: [
     {
       id: '3',
+      unread: 2,
+      createdAt: '2018-08-13 01:16:21.077+00',
+      group: {
+        name: 'General Chat',
+        groupPhoto: '/static/assets/avatar-chat.jpeg',
+        createdAt: '2018-08-13 01:16:21.077+00',
+      },
+      messages: [
+        {
+          id: 'message-1',
+          text: 'Hey hey',
+          createdAt: '2018-08-13 01:16:21.077+00',
+          user: users.jason,
+        },
+        {
+          id: 'message-2',
+          text: 'Hey Jason, how is it going? I love Robosquash.',
+          createdAt: '2018-08-13 01:16:21.077+00',
+          user: users.ccheever,
+        },
+        {
+          id: 'message-3',
+          text: 'I also love Robosquash.',
+          createdAt: '2018-08-13 01:16:21.077+00',
+          user: users.dog,
+        },
+        {
+          id: 'message-4',
+          text: 'Hoping to play lil basketball with Ayla.',
+          createdAt: '2018-08-13 01:16:21.077+00',
+          user: users.ccheever,
+        },
+        {
+          id: 'message-5',
+          text: 'Same.',
+          createdAt: '2018-08-13 01:16:21.077+00',
+          user: users.dog,
+        },
+        {
+          id: 'message-6',
+          text:
+            'Wait till you see the latest version. I added one where Jess is a playable character.',
+          createdAt: '2018-08-13 01:16:21.077+00',
+          user: users.ayla,
+        },
+      ],
+    },
+    {
+      id: '4',
       unread: 16,
       createdAt: '2018-08-13 01:16:21.077+00',
       user: users.jason,
@@ -77,7 +134,7 @@ export const chats = {
       ],
     },
     {
-      id: '4',
+      id: '5',
       unread: 0,
       createdAt: '2018-08-13 01:16:21.077+00',
       user: users.adamg,
@@ -115,7 +172,7 @@ export const chats = {
       ],
     },
     {
-      id: '5',
+      id: '6',
       unread: 0,
       createdAt: '2018-08-13 01:16:21.077+00',
       user: users.adamg,
@@ -140,7 +197,7 @@ export const chats = {
       ],
     },
     {
-      id: '6',
+      id: '7',
       unread: 0,
       createdAt: '2018-08-13 01:16:21.077+00',
       user: users.ayla,
