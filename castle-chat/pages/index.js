@@ -6,6 +6,190 @@ import * as SVG from '~/common/svg';
 
 import { css, styled } from 'react-emotion';
 
+import ChatSessionComponent from '~/components/ChatSessionComponent';
+import SideSectionHeader from '~/components/SideSectionHeader';
+import SideSectionEntity from '~/components/SideSectionEntity';
+import NotificationPill from '~/components/NotificationPill';
+
+const CASTLE_CHATS = [
+  {
+    id: '1',
+    meta: '2 hours ago',
+    unread: 4,
+    user: {
+      id: 'user-1',
+      username: 'jesse',
+      name: 'Jesse Ruder',
+      profilePhoto: '/static/assets/avatar-9.png',
+    },
+    group: {
+      name: 'Castle',
+      groupPhoto: '/static/assets/logo.png',
+    },
+    messages: [
+      {
+        id: 'message-1',
+        text: 'We just launched the new chat feature to all new users.',
+        user: {
+          id: 'user-1',
+          username: 'jesse',
+          name: 'Jesse Ruder',
+          profilePhoto: '/static/assets/avatar-9.png',
+        },
+      },
+    ],
+  },
+  {
+    id: '2',
+    user: {
+      id: 'user-2',
+      username: 'ccheever',
+      name: 'Charlie Cheever',
+      profilePhoto: '/static/assets/avatar-4.png',
+    },
+    meta: '30 mintues ago',
+    messages: [
+      {
+        id: 'message-1',
+        text: 'Hey did you finish the mocks?',
+        user: {
+          id: 'user-2',
+          username: 'ccheever',
+          name: 'Charlie Cheever',
+          profilePhoto: '/static/assets/avatar-4.png',
+        },
+      },
+      {
+        id: 'message-2',
+        text: 'I would like to see them.',
+        user: {
+          id: 'user-2',
+          username: 'ccheever',
+          name: 'Charlie Cheever',
+          profilePhoto: '/static/assets/avatar-4.png',
+        },
+      },
+    ],
+  },
+];
+
+const NORMAL_CHATS = [
+  {
+    id: '3',
+    unread: 16,
+    user: {
+      id: `user-3`,
+      name: 'Jason Riggs',
+      username: 'bigriggs',
+      profilePhoto: '/static/assets/avatar-2.png',
+    },
+    messages: [
+      {
+        id: 'message-1',
+        text: 'Hey missed you at standup',
+        user: {
+          id: `user-3`,
+          name: 'Jason Riggs',
+          username: 'bigriggs',
+          profilePhoto: '/static/assets/avatar-2.png',
+        },
+      },
+      {
+        id: 'message-2',
+        text: 'Have you been eating Cake?',
+        user: {
+          id: `user-3`,
+          name: 'Jason Riggs',
+          username: 'bigriggs',
+          profilePhoto: '/static/assets/avatar-2.png',
+        },
+      },
+    ],
+  },
+  {
+    id: '4',
+    unread: 0,
+    user: {
+      id: `user-4`,
+      name: 'Adam Guru (Quit)',
+      username: 'adam',
+      profilePhoto: '/static/assets/avatar-3.jpg',
+    },
+    messages: [
+      {
+        id: 'message-1',
+        text: 'Dude kind of put off you used my assets without telling me...',
+        user: {
+          id: `user-4`,
+          name: 'Adam Guru (Quit)',
+          username: 'adam',
+          profilePhoto: '/static/assets/avatar-3.jpg',
+        },
+      },
+      {
+        id: 'message-2',
+        text: 'Pretty pissed off about this.',
+        user: {
+          id: `user-4`,
+          name: 'Adam Guru (Quit)',
+          username: 'adam',
+          profilePhoto: '/static/assets/avatar-3.jpg',
+        },
+      },
+      {
+        id: 'message-3',
+        text: 'Next time: Ask for permission.',
+        user: {
+          id: `user-4`,
+          name: 'Adam Guru (Quit)',
+          username: 'adam',
+          profilePhoto: '/static/assets/avatar-3.jpg',
+        },
+      },
+    ],
+  },
+  {
+    id: '5',
+    unread: 0,
+    user: {
+      id: `user-4`,
+      name: 'Adam Guru (Quit)',
+      username: 'adam',
+      profilePhoto: '/static/assets/avatar-3.jpg',
+    },
+    group: {
+      name: 'Hyperreal Gaming',
+      groupPhoto: '/static/assets/avatar-7.png',
+    },
+    messages: [
+      {
+        id: 'message-1',
+        text: 'Jim, check your DMs, kinda upset about this thing you just did.',
+        user: {
+          id: `user-4`,
+          name: 'Adam Guru (Quit)',
+          username: 'adam',
+          profilePhoto: '/static/assets/avatar-3.jpg',
+        },
+      },
+    ],
+  },
+  {
+    id: '5',
+    unread: 0,
+    user: {
+      id: `user-5`,
+      name: 'Ayla Myers',
+      username: 'ayla',
+      profilePhoto: '/static/assets/avatar-1.jpg',
+    },
+    group: {
+      name: `Ayla's Squad`,
+      groupPhoto: '/static/assets/avatar-8.jpg',
+    },
+  },
+];
+
 const STYLES_BUTTON = css`
   height: 48px;
   width: 48px;
@@ -86,6 +270,7 @@ const RightChatBubble = props => {
 const STYLES_ACTIONS = css`
   min-height: 48px;
   width: 100%;
+  flex-shrink: 0;
   box-shadow: inset 0 1px 0 #3d3d3d;
   display: flex;
   align-items: center;
@@ -101,6 +286,7 @@ const ActionsBar = props => {
 
 const STYLES_HEADER = css`
   min-height: 48px;
+  flex-shrink: 0;
   width: 100%;
   box-shadow: inset 0 -1px 0 #3d3d3d;
   display: flex;
@@ -126,6 +312,10 @@ const STYLES_INPUT = css`
   box-shadow: 1px 0 0 #3d3d3d;
   font-size: 14px;
   background: transparent;
+
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
 
   :focus {
     border: 0;
@@ -202,6 +392,11 @@ const STYLES_SIDE_SECTION_LAYOUT_MIDDLE = css`
   min-height: 25%;
   height: 100%;
   width: 100%;
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
 `;
 
 const STYLES_SIDE_SECTION_LAYOUT_BOTTOM = css`
@@ -235,11 +430,6 @@ const STYLES_LAYOUT_LEFT = css`
   color: #ffffff;
   height: calc(100vh);
   box-shadow: inset -1px 0 0 #3d3d3d;
-  overflow-y: scroll;
-
-  ::-webkit-scrollbar {
-    width: 0px;
-  }
 `;
 
 const STYLES_LAYOUT_MIDDLE = css`
@@ -249,11 +439,6 @@ const STYLES_LAYOUT_MIDDLE = css`
   color: #ffffff;
   height: calc(100vh);
   box-shadow: inset -1px 0 0 #3d3d3d;
-  overflow-y: scroll;
-
-  ::-webkit-scrollbar {
-    width: 0px;
-  }
 `;
 
 const STYLES_LAYOUT_RIGHT = css`
@@ -263,11 +448,6 @@ const STYLES_LAYOUT_RIGHT = css`
   background-size: cover;
   background-position: 50% 50%;
   background-image: url('/static/screenshot.gif');
-  overflow-y: scroll;
-
-  ::-webkit-scrollbar {
-    width: 0px;
-  }
 `;
 
 const STYLES_LAYOUT = css`
@@ -290,6 +470,14 @@ const Layout = props => {
 // ---------------------------------------------------------
 
 export default class IndexPage extends React.Component {
+  state = {
+    selectedChatId: 1,
+  };
+
+  handleSelectChat = entity => {
+    this.setState({ selectedChatId: entity.id });
+  };
+
   render() {
     const leftElement = (
       <SideSectionLayout
@@ -300,14 +488,57 @@ export default class IndexPage extends React.Component {
           </HeaderBar>
         }
       >
-        <div>Groups, DMs, Annoucements</div>
+        <SideSectionHeader>Announcements</SideSectionHeader>
+        <div>
+          {CASTLE_CHATS.map(c => {
+            let src = c.group ? c.group.groupPhoto : c.user.profilePhoto;
+            let title = c.group ? c.group.name : c.user.name;
+            const author =
+              c.messages && c.messages.length && c.group ? c.messages[0].user.username : null;
+
+            return (
+              <SideSectionEntity
+                key={c.id}
+                src={src}
+                title={title}
+                author={author}
+                notificationCount={c.unread}
+              >
+                {c.messages && c.messages.length ? c.messages[0].text : ``}
+              </SideSectionEntity>
+            );
+          })}
+        </div>
+        <SideSectionHeader>Chats</SideSectionHeader>
+        <div>
+          {NORMAL_CHATS.map(c => {
+            let src = c.group ? c.group.groupPhoto : c.user.profilePhoto;
+            let title = c.group ? c.group.name : c.user.name;
+            const author =
+              c.messages && c.messages.length && c.group ? c.messages[0].user.username : null;
+
+            return (
+              <SideSectionEntity
+                key={c.id}
+                src={src}
+                title={title}
+                author={author}
+                notificationCount={c.unread}
+              >
+                {c.messages && c.messages.length ? c.messages[0].text : ``}
+              </SideSectionEntity>
+            );
+          })}
+        </div>
       </SideSectionLayout>
     );
     const middleElement = (
       <SideSectionLayout
         header={
           <HeaderBar>
-            <HeaderBarText>Jesse Ruder</HeaderBarText>{' '}
+            <HeaderBarText>
+              <ChatSessionComponent top="Jesse Ruder">4 minutes ago...</ChatSessionComponent>
+            </HeaderBarText>{' '}
             <IconButton svg={<SVG.Settings size="20px" />} />
           </HeaderBar>
         }

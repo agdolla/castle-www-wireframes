@@ -2,6 +2,11 @@ import { injectGlobal } from 'react-emotion';
 
 /* prettier-ignore */
 export default () => injectGlobal`
+  @font-face {
+    font-family: 'mono-font';
+    src: url('/static/fonts/Font-Mono-SFMono.woff');
+  }
+
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
