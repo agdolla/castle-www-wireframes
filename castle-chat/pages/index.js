@@ -3,6 +3,8 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 import * as React from 'react';
 import * as SVG from '~/common/svg';
+import * as Strings from '~/common/strings';
+import * as Fixtures from '~/common/fixtures';
 
 import { css, styled } from 'react-emotion';
 
@@ -10,185 +12,6 @@ import ChatSessionComponent from '~/components/ChatSessionComponent';
 import SideSectionHeader from '~/components/SideSectionHeader';
 import SideSectionEntity from '~/components/SideSectionEntity';
 import NotificationPill from '~/components/NotificationPill';
-
-const CASTLE_CHATS = [
-  {
-    id: '1',
-    meta: '2 hours ago',
-    unread: 4,
-    user: {
-      id: 'user-1',
-      username: 'jesse',
-      name: 'Jesse Ruder',
-      profilePhoto: '/static/assets/avatar-9.png',
-    },
-    group: {
-      name: 'Castle',
-      groupPhoto: '/static/assets/logo.png',
-    },
-    messages: [
-      {
-        id: 'message-1',
-        text: 'We just launched the new chat feature to all new users.',
-        user: {
-          id: 'user-1',
-          username: 'jesse',
-          name: 'Jesse Ruder',
-          profilePhoto: '/static/assets/avatar-9.png',
-        },
-      },
-    ],
-  },
-  {
-    id: '2',
-    user: {
-      id: 'user-2',
-      username: 'ccheever',
-      name: 'Charlie Cheever',
-      profilePhoto: '/static/assets/avatar-4.png',
-    },
-    meta: '30 mintues ago',
-    messages: [
-      {
-        id: 'message-1',
-        text: 'Hey did you finish the mocks?',
-        user: {
-          id: 'user-2',
-          username: 'ccheever',
-          name: 'Charlie Cheever',
-          profilePhoto: '/static/assets/avatar-4.png',
-        },
-      },
-      {
-        id: 'message-2',
-        text: 'I would like to see them.',
-        user: {
-          id: 'user-2',
-          username: 'ccheever',
-          name: 'Charlie Cheever',
-          profilePhoto: '/static/assets/avatar-4.png',
-        },
-      },
-    ],
-  },
-];
-
-const NORMAL_CHATS = [
-  {
-    id: '3',
-    unread: 16,
-    user: {
-      id: `user-3`,
-      name: 'Jason Riggs',
-      username: 'bigriggs',
-      profilePhoto: '/static/assets/avatar-2.png',
-    },
-    messages: [
-      {
-        id: 'message-1',
-        text: 'Hey missed you at standup',
-        user: {
-          id: `user-3`,
-          name: 'Jason Riggs',
-          username: 'bigriggs',
-          profilePhoto: '/static/assets/avatar-2.png',
-        },
-      },
-      {
-        id: 'message-2',
-        text: 'Have you been eating Cake?',
-        user: {
-          id: `user-3`,
-          name: 'Jason Riggs',
-          username: 'bigriggs',
-          profilePhoto: '/static/assets/avatar-2.png',
-        },
-      },
-    ],
-  },
-  {
-    id: '4',
-    unread: 0,
-    user: {
-      id: `user-4`,
-      name: 'Adam Guru (Quit)',
-      username: 'adam',
-      profilePhoto: '/static/assets/avatar-3.jpg',
-    },
-    messages: [
-      {
-        id: 'message-1',
-        text: 'Dude kind of put off you used my assets without telling me...',
-        user: {
-          id: `user-4`,
-          name: 'Adam Guru (Quit)',
-          username: 'adam',
-          profilePhoto: '/static/assets/avatar-3.jpg',
-        },
-      },
-      {
-        id: 'message-2',
-        text: 'Pretty pissed off about this.',
-        user: {
-          id: `user-4`,
-          name: 'Adam Guru (Quit)',
-          username: 'adam',
-          profilePhoto: '/static/assets/avatar-3.jpg',
-        },
-      },
-      {
-        id: 'message-3',
-        text: 'Next time: Ask for permission.',
-        user: {
-          id: `user-4`,
-          name: 'Adam Guru (Quit)',
-          username: 'adam',
-          profilePhoto: '/static/assets/avatar-3.jpg',
-        },
-      },
-    ],
-  },
-  {
-    id: '5',
-    unread: 0,
-    user: {
-      id: `user-4`,
-      name: 'Adam Guru (Quit)',
-      username: 'adam',
-      profilePhoto: '/static/assets/avatar-3.jpg',
-    },
-    group: {
-      name: 'Hyperreal Gaming',
-      groupPhoto: '/static/assets/avatar-7.png',
-    },
-    messages: [
-      {
-        id: 'message-1',
-        text: 'Jim, check your DMs, kinda upset about this thing you just did.',
-        user: {
-          id: `user-4`,
-          name: 'Adam Guru (Quit)',
-          username: 'adam',
-          profilePhoto: '/static/assets/avatar-3.jpg',
-        },
-      },
-    ],
-  },
-  {
-    id: '5',
-    unread: 0,
-    user: {
-      id: `user-5`,
-      name: 'Ayla Myers',
-      username: 'ayla',
-      profilePhoto: '/static/assets/avatar-1.jpg',
-    },
-    group: {
-      name: `Ayla's Squad`,
-      groupPhoto: '/static/assets/avatar-8.jpg',
-    },
-  },
-];
 
 const STYLES_BUTTON = css`
   height: 48px;
@@ -225,29 +48,63 @@ const HeaderBarText = props => {
   return <span className={STYLES_HEADER_BAR_TEXT}>{props.children}</span>;
 };
 
-// GROUP SLOT
-// ---------------------------------------------------------
-
-const GroupSlot = props => {
-  return (
-    <div>
-      <div>Image</div>
-      <div>
-        <div>Disney Land</div>
-        <div>Name</div>
-      </div>
-    </div>
-  );
-};
-
 // LEFT CHAT BUBBLE
 // ---------------------------------------------------------
 
+const STYLES_LEFT_CHAT_BUBBLE = css`
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-right: 24px;
+  margin-top: 16px;
+`;
+
+const STYLES_LEFT_CHAT_BUBBLE_AVATAR = css`
+  background-size: cover;
+  background-position: 50% 50%;
+  height: 32px;
+  width: 32px;
+  flex-shrink: 0;
+`;
+
+const STYLES_LEFT_CHAT_BUBBLE_MESSAGE = css`
+  min-width: 25%;
+  width: 100%;
+  padding: 0 0 0 8px;
+`;
+
+const STYLES_LEFT_CHAT_BUBBLE_MESSAGE_TITLE = css`
+  font-size: 12px;
+  color: #777;
+`;
+
+const STYLES_LEFT_CHAT_BUBBLE_MESSAGE_BOTTOM = css`
+  text-align: left;
+  margin-top: 4px;
+`;
+
+const STYLES_LEFT_CHAT_BOUNDS = css`
+  display: inline-block;
+  padding: 8px 16px 10px 16px;
+  background: #ffffff;
+  color: #000000;
+  border-radius: 12px;
+  font-size: 14px;
+`;
+
 const LeftChatBubble = props => {
   return (
-    <div>
-      <div>Name</div>
-      <div>Name</div>
+    <div className={STYLES_LEFT_CHAT_BUBBLE}>
+      <span
+        className={STYLES_LEFT_CHAT_BUBBLE_AVATAR}
+        style={{ backgroundImage: `url(${props.src})` }}
+      />
+      <div className={STYLES_LEFT_CHAT_BUBBLE_MESSAGE}>
+        <div className={STYLES_LEFT_CHAT_BUBBLE_MESSAGE_TITLE}>{props.name}</div>
+        <div className={STYLES_LEFT_CHAT_BUBBLE_MESSAGE_BOTTOM}>
+          <span className={STYLES_LEFT_CHAT_BOUNDS}>{props.children}</span>
+        </div>
+      </div>
     </div>
   );
 };
@@ -255,11 +112,61 @@ const LeftChatBubble = props => {
 // RIGHT CHAT BUBBLE
 // ---------------------------------------------------------
 
+const STYLES_RIGHT_CHAT_BUBBLE = css`
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-left: 24px;
+  margin-top: 16px;
+`;
+
+const STYLES_RIGHT_CHAT_BUBBLE_AVATAR = css`
+  background-size: cover;
+  background-position: 50% 50%;
+  height: 32px;
+  width: 32px;
+  flex-shrink: 0;
+`;
+
+const STYLES_RIGHT_CHAT_BUBBLE_MESSAGE = css`
+  min-width: 25%;
+  width: 100%;
+  padding: 0 8px 0 0;
+`;
+
+const STYLES_RIGHT_CHAT_BUBBLE_MESSAGE_TITLE = css`
+  font-size: 12px;
+  color: #777;
+  text-align: right;
+`;
+
+const STYLES_RIGHT_CHAT_BUBBLE_MESSAGE_BOTTOM = css`
+  margin-top: 4px;
+  text-align: right;
+`;
+
+const STYLES_RIGHT_CHAT_BOUNDS = css`
+  display: inline-block;
+  padding: 8px 16px 10px 16px;
+  background: magenta;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 14px;
+`;
+
 const RightChatBubble = props => {
   return (
-    <div>
-      <div>Name</div>
-      <div>Name</div>
+    <div className={STYLES_RIGHT_CHAT_BUBBLE}>
+      <div className={STYLES_RIGHT_CHAT_BUBBLE_MESSAGE}>
+        <div className={STYLES_RIGHT_CHAT_BUBBLE_MESSAGE_TITLE}>{props.name}</div>
+        <div className={STYLES_RIGHT_CHAT_BUBBLE_MESSAGE_BOTTOM}>
+          <span className={STYLES_RIGHT_CHAT_BOUNDS}>{props.children}</span>
+        </div>
+      </div>
+      <span
+        className={STYLES_RIGHT_CHAT_BUBBLE_AVATAR}
+        style={{ backgroundImage: `url(${props.src})` }}
+      />
     </div>
   );
 };
@@ -359,6 +266,16 @@ class ChatInput extends React.Component {
     this.setState({ value: e.target.value });
   };
 
+  _handleSubmit = e => {
+    if (e.which === 13) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.props.onSubmit(this.state.value);
+      this.setState({ value: '' });
+      return false;
+    }
+  };
+
   render() {
     return (
       <TextareaAutosize
@@ -366,6 +283,7 @@ class ChatInput extends React.Component {
         placeholder="Type a message..."
         value={this.state.value}
         onChange={this._handleChange}
+        onKeyDown={this._handleSubmit}
       />
     );
   }
@@ -471,14 +389,58 @@ const Layout = props => {
 
 export default class IndexPage extends React.Component {
   state = {
-    selectedChatId: 1,
+    selectedChatId: '4',
+    announcements: [...Fixtures.chats.castle],
+    chats: [...Fixtures.chats.normal],
   };
 
   handleSelectChat = entity => {
+    if (this.state.selectedChatId === entity.id) {
+      return this.setState({ selectedChatId: null });
+    }
+
     this.setState({ selectedChatId: entity.id });
   };
 
+  _handleSubmit = text => {
+    const message = {
+      id: `message-${new Date().getTime()}`,
+      text,
+      createdAt: Strings.createDate(),
+      user: Fixtures.users.viewer,
+    };
+
+    const selectedChat = [...this.state.announcements, ...this.state.chats].find(
+      c => c.id === this.state.selectedChatId
+    );
+
+    if (!selectedChat) {
+      return;
+    }
+
+    const messages = [...selectedChat.messages];
+    messages.push(message);
+
+    const updatedSelectedChat = { ...selectedChat, messages };
+    const chats = [...this.state.chats];
+
+    for (let i = 0; i < chats.length; i++) {
+      if (chats[i].id === updatedSelectedChat.id) {
+        chats[i] = updatedSelectedChat;
+        break;
+      }
+    }
+
+    this.setState({ chats });
+  };
+
   render() {
+    const selectedChat = [...this.state.announcements, ...this.state.chats].find(
+      c => c.id === this.state.selectedChatId
+    );
+
+    console.log('Current Chat Object', selectedChat);
+
     const leftElement = (
       <SideSectionLayout
         header={
@@ -486,11 +448,10 @@ export default class IndexPage extends React.Component {
             <SearchInput />
             <IconButton svg={<SVG.Membership size="20px" />} />
           </HeaderBar>
-        }
-      >
+        }>
         <SideSectionHeader>Announcements</SideSectionHeader>
         <div>
-          {CASTLE_CHATS.map(c => {
+          {this.state.announcements.map(c => {
             let src = c.group ? c.group.groupPhoto : c.user.profilePhoto;
             let title = c.group ? c.group.name : c.user.name;
             const author =
@@ -502,8 +463,9 @@ export default class IndexPage extends React.Component {
                 src={src}
                 title={title}
                 author={author}
+                isSelected={c.id === this.state.selectedChatId}
                 notificationCount={c.unread}
-              >
+                onClick={() => this.handleSelectChat(c)}>
                 {c.messages && c.messages.length ? c.messages[0].text : ``}
               </SideSectionEntity>
             );
@@ -511,7 +473,7 @@ export default class IndexPage extends React.Component {
         </div>
         <SideSectionHeader>Chats</SideSectionHeader>
         <div>
-          {NORMAL_CHATS.map(c => {
+          {this.state.chats.map(c => {
             let src = c.group ? c.group.groupPhoto : c.user.profilePhoto;
             let title = c.group ? c.group.name : c.user.name;
             const author =
@@ -523,8 +485,9 @@ export default class IndexPage extends React.Component {
                 src={src}
                 title={title}
                 author={author}
+                isSelected={c.id === this.state.selectedChatId}
                 notificationCount={c.unread}
-              >
+                onClick={() => this.handleSelectChat(c)}>
                 {c.messages && c.messages.length ? c.messages[0].text : ``}
               </SideSectionEntity>
             );
@@ -532,26 +495,58 @@ export default class IndexPage extends React.Component {
         </div>
       </SideSectionLayout>
     );
-    const middleElement = (
+    const middleElement = this.state.selectedChatId ? (
       <SideSectionLayout
         header={
           <HeaderBar>
             <HeaderBarText>
-              <ChatSessionComponent top="Jesse Ruder">4 minutes ago...</ChatSessionComponent>
+              <ChatSessionComponent
+                top={
+                  selectedChat.group
+                    ? selectedChat.group.name
+                    : selectedChat.messages && selectedChat.messages.length
+                    ? selectedChat.messages[0].user.name
+                    : selectedChat.user.name
+                }>
+                {Strings.getTimeSinceToday(
+                  selectedChat.group
+                    ? selectedChat.group.createdAt
+                    : selectedChat.messages && selectedChat.messages.length
+                    ? selectedChat.messages[0].createdAt
+                    : selectedChat.createdAt
+                )}
+              </ChatSessionComponent>
             </HeaderBarText>{' '}
             <IconButton svg={<SVG.Settings size="20px" />} />
           </HeaderBar>
         }
         bottom={
-          <ActionsBar>
-            <ChatInput />
-            <IconButton svg={<SVG.Smile size="20px" />} />
-          </ActionsBar>
-        }
-      >
-        <div>Conversation</div>
+          !selectedChat.isReadOnly ? (
+            <ActionsBar>
+              <ChatInput onSubmit={this._handleSubmit} />
+              <IconButton svg={<SVG.Smile size="20px" />} />
+            </ActionsBar>
+          ) : null
+        }>
+        <div style={{ padding: `0px 16px 16px 16px` }}>
+          {selectedChat.messages.map(c => {
+            if (c.user.id === Fixtures.users.viewer.id) {
+              return (
+                <RightChatBubble key={c.id} src={c.user.profilePhoto} name={c.user.name}>
+                  {c.text}
+                </RightChatBubble>
+              );
+            }
+
+            return (
+              <LeftChatBubble key={c.id} src={c.user.profilePhoto} name={c.user.name}>
+                {c.text}
+              </LeftChatBubble>
+            );
+          })}
+        </div>
       </SideSectionLayout>
-    );
+    ) : null;
 
     return (
       <React.Fragment>

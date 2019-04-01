@@ -11,6 +11,8 @@ const STYLES_CONTAINER = css`
   box-shadow: inset 0 -1px 0 #3d3d3d;
   background-color: #444;
   cursor: pointer;
+  transition: 200ms ease background;
+  user-select: none;
 
   :last-child {
     box-shadow: none;
@@ -66,17 +68,20 @@ const STYLES_META = css`
   width: 100%;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: #999;
+  color: #dcdcdc;
 `;
 
 const SideSectionEntity = props => {
   return (
-    <div className={STYLES_CONTAINER}>
+    <div
+      className={STYLES_CONTAINER}
+      onClick={props.onClick}
+      style={{ backgroundColor: props.isSelected ? 'magenta' : undefined }}>
       <span className={STYLES_LEFT} style={{ backgroundImage: `url(${props.src})` }} />
       <span className={STYLES_RIGHT}>
         <div className={STYLES_TITLE}>
           {props.title}{' '}
-          {props.notificationCount ? (
+          {props.notificationCount && !props.isSelected ? (
             <NotificationPill style={{ marginLeft: 8, marginTop: 2 }}>
               {props.notificationCount}
             </NotificationPill>
