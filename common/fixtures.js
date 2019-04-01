@@ -7,6 +7,14 @@ export const users = {
     createdAt: '2018-08-13 01:16:21.077+00',
   },
 
+  castle: {
+    id: 'user-0',
+    username: 'Notifications',
+    name: 'Castle Notifications',
+    profilePhoto: '/static/assets/logo.png',
+    createdAt: '2018-08-13 01:16:21.077+00',
+  },
+
   jason: {
     id: `user-3`,
     name: 'Jason Riggs',
@@ -246,7 +254,7 @@ export const chats = {
       id: '1',
       unread: 4,
       createdAt: '2018-08-13 01:16:21.077+00',
-      user: users.jesse,
+      user: users.castle,
       isReadOnly: true,
       group: {
         name: 'Castle',
@@ -258,7 +266,7 @@ export const chats = {
           id: 'message-1',
           text: 'We just launched the new chat feature to all new users.',
           createdAt: '2018-08-13 01:16:21.077+00',
-          user: users.jesse,
+          user: users.castle,
         },
       ],
     },
@@ -276,7 +284,7 @@ export const chats = {
         },
         {
           id: 'message-2',
-          text: 'Time to play Charlie Party',
+          text: 'We just launched a new game I want everyone to try called Revenge of The Turtles!',
           createdAt: '2018-08-13 01:16:21.077+00',
           user: users.ccheever,
         },

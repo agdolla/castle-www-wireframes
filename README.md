@@ -15,6 +15,8 @@ https://castle-www-prototype-1-xdpr.onrender.com/
 #### User Search
 
 - Imagine a popover where you can select a name and create either a group chat or a DM.
+- Icon to the right allows you to create a group and then invite others later.
+- We can tuck other settings into that popover.
 
 #### Annoucements
 
@@ -22,12 +24,12 @@ https://castle-www-prototype-1-xdpr.onrender.com/
 
 #### Chats
 
-- Shows the last thing someone said
+- Shows the last thing a user said.
 - Selecting the same group hides the sidebar to get back some real estate.
 
 #### Chat Window
 
-- Image the bottom right allows for emojis/stickers.
+- Imagine the bottom right allows for emojis/stickers.
 - Top right settings allow you to turn a chat into a group, delete the chat.
 - I'd like to be able to start a game session with a group.
 
