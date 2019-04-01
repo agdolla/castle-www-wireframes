@@ -9,6 +9,10 @@ export const pluralize = (text, count) => {
   return count > 1 || count === 0 ? `${text}s` : text;
 };
 
+export const isEmpty = string => {
+  return !string || !string.trim();
+};
+
 export const getTimeSinceToday = date => {
   const publishTimeSeconds = new Date(date).getTime();
   const currentTimeSeconds = new Date().getTime();

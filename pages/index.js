@@ -15,6 +15,7 @@ import NotificationPill from '~/components/NotificationPill';
 
 import PopoverChat from '~/components/PopoverChat';
 import PopoverSettings from '~/components/PopoverSettings';
+import PopoverSearchResults from '~/components/PopoverSearchResults';
 
 const STYLES_BUTTON = css`
   height: 48px;
@@ -240,21 +241,13 @@ const STYLES_INPUT = css`
 // ---------------------------------------------------------
 
 class SearchInput extends React.Component {
-  state = {
-    value: '',
-  };
-
-  _handleChange = e => {
-    this.setState({ value: e.target.value });
-  };
-
   render() {
     return (
-      <TextareaAutosize
+      <input
         className={STYLES_INPUT}
         placeholder="Search users..."
-        value={this.state.value}
-        onChange={this._handleChange}
+        value={this.props.value}
+        onChange={this.props.onChange}
       />
     );
   }
@@ -285,6 +278,7 @@ class ChatInput extends React.Component {
   render() {
     return (
       <TextareaAutosize
+        autoFocus
         className={STYLES_INPUT}
         placeholder="Type a message..."
         value={this.state.value}
@@ -428,6 +422,8 @@ export default class IndexPage extends React.Component {
   state = {
     selectedChatId: '4',
     popover: null,
+    search: '',
+    searchResults: [],
     announcements: [...Fixtures.chats.castle],
     chats: [...Fixtures.chats.normal],
   };
@@ -446,13 +442,52 @@ export default class IndexPage extends React.Component {
     });
   };
 
+  _handleUserClick = user => {
+    let found;
+
+    found = this.state.chats.find(u => {
+      return u.user && u.user.id === user.id;
+    });
+
+    if (found) {
+      return this.setState({
+        selectedChatId: found.id,
+        search: '',
+        searchResults: [],
+      });
+    }
+
+    const chats = [...this.state.chats];
+    const chatId = `chat-${new Date().getTime()}`;
+    chats.push({
+      id: chatId,
+      unread: 0,
+      createdAt: '2018-08-13 01:16:21.077+00',
+      user: user,
+      messages: [],
+    });
+
+    this.setState({ search: '', searchResults: [], chats, selectedChatId: chatId });
+  };
+
+  _handleSearchChange = e => {
+    const searchResults = [];
+    Fixtures.usersList.forEach(u => {
+      if (u.username.includes(e.target.value) || u.name.includes(e.target.value)) {
+        searchResults.push(u);
+      }
+    });
+
+    this.setState({ search: e.target.value, popover: null, searchResults });
+  };
+
   _handleSelectPopover = type => {
     if (type === this.state.popover) {
       this.setState({ popover: null });
       return;
     }
 
-    this.setState({ popover: type });
+    this.setState({ popover: type, search: '', searchResults: [] });
   };
 
   _handleSubmit = text => {
@@ -504,7 +539,7 @@ export default class IndexPage extends React.Component {
       <SideSectionLayout
         header={
           <HeaderBar>
-            <SearchInput />
+            <SearchInput onChange={this._handleSearchChange} value={this.props.search} />
             <IconButton
               isActive={this.state.popover === 'SETTINGS'}
               onClick={() => this._handleSelectPopover('SETTINGS')}
@@ -514,6 +549,12 @@ export default class IndexPage extends React.Component {
         }>
         {this.state.selectedChatId && this.state.popover === 'SETTINGS' ? (
           <PopoverSettings />
+        ) : null}
+        {this.state.searchResults && !Strings.isEmpty(this.state.search) ? (
+          <PopoverSearchResults
+            onClick={this._handleUserClick}
+            searchResults={this.state.searchResults}
+          />
         ) : null}
         <SideSectionHeader>Announcements</SideSectionHeader>
         <div>

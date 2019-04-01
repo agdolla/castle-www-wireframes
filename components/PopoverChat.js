@@ -7,6 +7,7 @@ const STYLES_POPOVER = css`
   z-index: 1;
   top: 40px;
   right: 8px;
+  width: 200px;
   background: #acacac;
   border-radius: 4px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);

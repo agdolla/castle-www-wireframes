@@ -72,6 +72,72 @@ export const users = {
   },
 };
 
+export const usersList = [
+  {
+    id: 'user-6',
+    username: 'cakejim',
+    name: 'The Cake God, Jim',
+    profilePhoto: '/static/assets/avatar-10.jpg',
+    createdAt: '2018-08-13 01:16:21.077+00',
+  },
+
+  {
+    id: `user-3`,
+    name: 'Jason Riggs',
+    username: 'bigriggs',
+    profilePhoto: '/static/assets/avatar-2.png',
+    createdAt: '2018-08-13 01:16:21.077+00',
+  },
+
+  {
+    id: `user-4`,
+    name: 'Adam Guru (Quit)',
+    username: 'adam',
+    profilePhoto: '/static/assets/avatar-3.jpg',
+    createdAt: '2018-08-13 01:16:21.077+00',
+  },
+
+  {
+    id: `user-5`,
+    name: 'Ayla Myers',
+    username: 'ayla',
+    profilePhoto: '/static/assets/avatar-1.jpg',
+    createdAt: '2018-08-13 01:16:21.077+00',
+  },
+
+  {
+    id: 'user-1',
+    username: 'jesse',
+    name: 'Jesse Ruder',
+    profilePhoto: '/static/assets/avatar-9.png',
+    createdAt: '2018-08-13 01:16:21.077+00',
+  },
+
+  {
+    id: 'user-2',
+    username: 'ccheever',
+    name: 'Charlie Cheever',
+    profilePhoto: '/static/assets/avatar-4.png',
+    createdAt: '2018-08-13 01:16:21.077+00',
+  },
+
+  {
+    id: 'user-7',
+    username: 'dog',
+    name: 'A friendly dog',
+    profilePhoto: '/static/assets/a2.jpg',
+    createdAt: '2018-08-13 01:16:21.077+00',
+  },
+
+  {
+    id: 'user-8',
+    username: 'rebekah',
+    name: 'Rebekah',
+    profilePhoto: '/static/assets/avatar-3.png',
+    createdAt: '2018-08-13 01:16:21.077+00',
+  },
+];
+
 export const chats = {
   normal: [
     {

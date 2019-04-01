@@ -14,9 +14,9 @@ https://castle-www-prototype-1-xdpr.onrender.com/
 
 #### User Search
 
-- Imagine a popover where you can select a name and create either a group chat or a DM.
-- Icon to the right allows you to create a group and then invite others later.
-- We can tuck other settings into that popover.
+- Search to create a new chat
+- Create a group first with the settings popover
+- Imagine a settings where you can configure your search preference (do you appear in search?)
 
 #### Annoucements
 
