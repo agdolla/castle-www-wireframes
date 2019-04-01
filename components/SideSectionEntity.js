@@ -71,27 +71,27 @@ const STYLES_META = css`
   color: #dcdcdc;
 `;
 
-const SideSectionEntity = props => {
-  return (
-    <div
-      className={STYLES_CONTAINER}
-      onClick={props.onClick}
-      style={{ backgroundColor: props.isSelected ? 'magenta' : undefined }}>
-      <span className={STYLES_LEFT} style={{ backgroundImage: `url(${props.src})` }} />
-      <span className={STYLES_RIGHT}>
-        <div className={STYLES_TITLE}>
-          {props.title}{' '}
-          {props.notificationCount && !props.isSelected ? (
-            <NotificationPill style={{ marginLeft: 8, marginTop: 2 }}>
-              {props.notificationCount}
-            </NotificationPill>
-          ) : null}
-        </div>
-        {props.author ? <div className={STYLES_USER}>{props.author}</div> : null}
-        <div className={STYLES_META}>{props.children}</div>
-      </span>
-    </div>
-  );
-};
-
-export default SideSectionEntity;
+export default class SideSectionEntity extends React.Component {
+  render() {
+    return (
+      <div
+        className={STYLES_CONTAINER}
+        onClick={this.props.onClick}
+        style={{ backgroundColor: this.props.isSelected ? 'magenta' : undefined }}>
+        <span className={STYLES_LEFT} style={{ backgroundImage: `url(${this.props.src})` }} />
+        <span className={STYLES_RIGHT}>
+          <div className={STYLES_TITLE}>
+            {this.props.title}{' '}
+            {this.props.notificationCount && !this.props.isSelected ? (
+              <NotificationPill style={{ marginLeft: 8, marginTop: 2 }}>
+                {this.props.notificationCount}
+              </NotificationPill>
+            ) : null}
+          </div>
+          {this.props.author ? <div className={STYLES_USER}>{this.props.author}</div> : null}
+          <div className={STYLES_META}>{this.props.children}</div>
+        </span>
+      </div>
+    );
+  }
+}

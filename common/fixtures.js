@@ -54,6 +54,14 @@ export const users = {
     profilePhoto: '/static/assets/a2.jpg',
     createdAt: '2018-08-13 01:16:21.077+00',
   },
+
+  rcox: {
+    id: 'user-8',
+    username: 'rebekah',
+    name: 'Rebekah',
+    profilePhoto: '/static/assets/avatar-3.png',
+    createdAt: '2018-08-13 01:16:21.077+00',
+  },
 };
 
 export const chats = {
@@ -104,6 +112,30 @@ export const chats = {
             'Wait till you see the latest version. I added one where Jess is a playable character.',
           createdAt: '2018-08-13 01:16:21.077+00',
           user: users.ayla,
+        },
+        {
+          id: 'message-7',
+          text: 'Hey that is awesome!',
+          createdAt: '2018-08-13 01:16:21.077+00',
+          user: users.viewer,
+        },
+        {
+          id: 'message-8',
+          text: 'I really want to give this a shot!',
+          createdAt: '2018-08-13 01:16:21.077+00',
+          user: users.viewer,
+        },
+        {
+          id: 'message-9',
+          text: 'Next round Jim.',
+          createdAt: '2018-08-13 01:16:21.077+00',
+          user: users.ccheever,
+        },
+        {
+          id: 'message-10',
+          text: 'What do people want to play next?',
+          createdAt: '2018-08-13 01:16:21.077+00',
+          user: users.rcox,
         },
       ],
     },

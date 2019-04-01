@@ -323,13 +323,41 @@ const STYLES_SIDE_SECTION_LAYOUT_BOTTOM = css`
 `;
 
 class SideSectionLayout extends React.Component {
+  _scrollContainer;
+
+  scroll = () => {
+    this._scrollContainer.scrollTop = this._scrollContainer.scrollHeight;
+  };
+
+  getRef = () => {
+    return this._scrollContainer;
+  };
+
+  componentDidMount() {
+    if (!this._scrollContainer) {
+      return;
+    }
+
+    if (!this.props.autoScroll) {
+      return;
+    }
+
+    this.scroll();
+  }
+
   render() {
     return (
       <div className={STYLES_SIDE_SECTION_LAYOUT} style={this.props.style}>
         {this.props.header ? (
           <div className={STYLES_SIDE_SECTION_LAYOUT_HEADER}>{this.props.header}</div>
         ) : null}
-        <div className={STYLES_SIDE_SECTION_LAYOUT_MIDDLE}>{this.props.children}</div>
+        <div
+          className={STYLES_SIDE_SECTION_LAYOUT_MIDDLE}
+          ref={c => {
+            this._scrollContainer = c;
+          }}>
+          {this.props.children}
+        </div>
         {this.props.bottom ? (
           <div className={STYLES_SIDE_SECTION_LAYOUT_BOTTOM}>{this.props.bottom}</div>
         ) : null}
@@ -388,6 +416,8 @@ const Layout = props => {
 // ---------------------------------------------------------
 
 export default class IndexPage extends React.Component {
+  _chatWindow;
+
   state = {
     selectedChatId: '4',
     announcements: [...Fixtures.chats.castle],
@@ -399,7 +429,13 @@ export default class IndexPage extends React.Component {
       return this.setState({ selectedChatId: null });
     }
 
-    this.setState({ selectedChatId: entity.id });
+    this.setState({ selectedChatId: entity.id }, () => {
+      if (!this._chatWindow) {
+        return;
+      }
+
+      this._chatWindow.scroll();
+    });
   };
 
   _handleSubmit = text => {
@@ -431,7 +467,13 @@ export default class IndexPage extends React.Component {
       }
     }
 
-    this.setState({ chats });
+    this.setState({ chats }, () => {
+      if (!this._chatWindow) {
+        return;
+      }
+
+      this._chatWindow.scroll();
+    });
   };
 
   render() {
@@ -455,7 +497,9 @@ export default class IndexPage extends React.Component {
             let src = c.group ? c.group.groupPhoto : c.user.profilePhoto;
             let title = c.group ? c.group.name : c.user.name;
             const author =
-              c.messages && c.messages.length && c.group ? c.messages[0].user.username : null;
+              c.messages && c.messages.length && c.group
+                ? c.messages[c.messages.length - 1].user.username
+                : null;
 
             return (
               <SideSectionEntity
@@ -466,7 +510,7 @@ export default class IndexPage extends React.Component {
                 isSelected={c.id === this.state.selectedChatId}
                 notificationCount={c.unread}
                 onClick={() => this.handleSelectChat(c)}>
-                {c.messages && c.messages.length ? c.messages[0].text : ``}
+                {c.messages && c.messages.length ? c.messages[c.messages.length - 1].text : ``}
               </SideSectionEntity>
             );
           })}
@@ -476,8 +520,22 @@ export default class IndexPage extends React.Component {
           {this.state.chats.map(c => {
             let src = c.group ? c.group.groupPhoto : c.user.profilePhoto;
             let title = c.group ? c.group.name : c.user.name;
-            const author =
-              c.messages && c.messages.length && c.group ? c.messages[0].user.username : null;
+            let author =
+              c.messages && c.messages.length && c.group
+                ? c.messages[c.messages.length - 1].user.username
+                : null;
+
+            if (author === Fixtures.users.viewer.username) {
+              author = 'You';
+            }
+
+            if (
+              c.messages &&
+              c.messages.length &&
+              c.messages[c.messages.length - 1].user.username === Fixtures.users.viewer.username
+            ) {
+              author = 'You';
+            }
 
             return (
               <SideSectionEntity
@@ -488,7 +546,7 @@ export default class IndexPage extends React.Component {
                 isSelected={c.id === this.state.selectedChatId}
                 notificationCount={c.unread}
                 onClick={() => this.handleSelectChat(c)}>
-                {c.messages && c.messages.length ? c.messages[0].text : ``}
+                {c.messages && c.messages.length ? c.messages[c.messages.length - 1].text : ``}
               </SideSectionEntity>
             );
           })}
@@ -497,6 +555,10 @@ export default class IndexPage extends React.Component {
     );
     const middleElement = this.state.selectedChatId ? (
       <SideSectionLayout
+        ref={c => {
+          this._chatWindow = c;
+        }}
+        autoScroll
         header={
           <HeaderBar>
             <HeaderBarText>
@@ -505,14 +567,14 @@ export default class IndexPage extends React.Component {
                   selectedChat.group
                     ? selectedChat.group.name
                     : selectedChat.messages && selectedChat.messages.length
-                    ? selectedChat.messages[0].user.name
+                    ? selectedChat.messages[selectedChat.messages.length - 1].user.name
                     : selectedChat.user.name
                 }>
                 {Strings.getTimeSinceToday(
                   selectedChat.group
                     ? selectedChat.group.createdAt
                     : selectedChat.messages && selectedChat.messages.length
-                    ? selectedChat.messages[0].createdAt
+                    ? selectedChat.messages[selectedChat.messages.length - 1].createdAt
                     : selectedChat.createdAt
                 )}
               </ChatSessionComponent>
