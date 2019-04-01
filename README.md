@@ -30,7 +30,6 @@ https://castle-www-prototype-1-xdpr.onrender.com/
 #### Chat Window
 
 - Imagine the bottom right allows for emojis/stickers.
-- Top right settings allow you to turn a chat into a group, delete the chat.
 - I'd like to be able to start a game session with a group.
 
 ## Ideas

@@ -13,6 +13,9 @@ import SideSectionHeader from '~/components/SideSectionHeader';
 import SideSectionEntity from '~/components/SideSectionEntity';
 import NotificationPill from '~/components/NotificationPill';
 
+import PopoverChat from '~/components/PopoverChat';
+import PopoverSettings from '~/components/PopoverSettings';
+
 const STYLES_BUTTON = css`
   height: 48px;
   width: 48px;
@@ -38,7 +41,10 @@ const STYLES_HEADER_BAR_TEXT = css`
 
 const IconButton = props => {
   return (
-    <span className={STYLES_BUTTON} style={props.style}>
+    <span
+      className={STYLES_BUTTON}
+      onClick={props.onClick}
+      style={{ ...props.style, color: props.isActive ? 'magenta' : null }}>
       {props.svg}
     </span>
   );
@@ -299,6 +305,7 @@ const STYLES_SIDE_SECTION_LAYOUT = css`
   height: 100%;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 `;
 
 const STYLES_SIDE_SECTION_LAYOUT_HEADER = css`
@@ -420,22 +427,32 @@ export default class IndexPage extends React.Component {
 
   state = {
     selectedChatId: '4',
+    popover: null,
     announcements: [...Fixtures.chats.castle],
     chats: [...Fixtures.chats.normal],
   };
 
   handleSelectChat = entity => {
     if (this.state.selectedChatId === entity.id) {
-      return this.setState({ selectedChatId: null });
+      return this.setState({ selectedChatId: null, popover: null });
     }
 
-    this.setState({ selectedChatId: entity.id }, () => {
+    this.setState({ selectedChatId: entity.id, popover: null }, () => {
       if (!this._chatWindow) {
         return;
       }
 
       this._chatWindow.scroll();
     });
+  };
+
+  _handleSelectPopover = type => {
+    if (type === this.state.popover) {
+      this.setState({ popover: null });
+      return;
+    }
+
+    this.setState({ popover: type });
   };
 
   _handleSubmit = text => {
@@ -488,9 +505,16 @@ export default class IndexPage extends React.Component {
         header={
           <HeaderBar>
             <SearchInput />
-            <IconButton svg={<SVG.Membership size="20px" />} />
+            <IconButton
+              isActive={this.state.popover === 'SETTINGS'}
+              onClick={() => this._handleSelectPopover('SETTINGS')}
+              svg={<SVG.Membership size="20px" />}
+            />
           </HeaderBar>
         }>
+        {this.state.selectedChatId && this.state.popover === 'SETTINGS' ? (
+          <PopoverSettings />
+        ) : null}
         <SideSectionHeader>Announcements</SideSectionHeader>
         <div>
           {this.state.announcements.map(c => {
@@ -579,7 +603,11 @@ export default class IndexPage extends React.Component {
                 )}
               </ChatSessionComponent>
             </HeaderBarText>{' '}
-            <IconButton svg={<SVG.Settings size="20px" />} />
+            <IconButton
+              isActive={this.state.popover === 'CHAT'}
+              onClick={() => this._handleSelectPopover('CHAT')}
+              svg={<SVG.Settings size="20px" />}
+            />
           </HeaderBar>
         }
         bottom={
@@ -590,6 +618,9 @@ export default class IndexPage extends React.Component {
             </ActionsBar>
           ) : null
         }>
+        {this.state.selectedChatId && this.state.popover === 'CHAT' ? (
+          <PopoverChat>Hello World</PopoverChat>
+        ) : null}
         <div style={{ padding: `0px 16px 16px 16px` }}>
           {selectedChat.messages.map(c => {
             if (c.user.id === Fixtures.users.viewer.id) {
