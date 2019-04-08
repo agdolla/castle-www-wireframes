@@ -3,7 +3,7 @@ export const users = {
     id: 'user-6',
     username: 'cakejim',
     name: 'The Cake God, Jim',
-    profilePhoto: '/static/assets/avatar-10.jpg',
+    profilePhoto: '/static/assets/jim.jpg',
     createdAt: '2018-08-13 01:16:21.077+00',
   },
 
@@ -25,9 +25,9 @@ export const users = {
 
   adamg: {
     id: `user-4`,
-    name: 'Adam Guru (Quit)',
+    name: 'Adam Gryu (Quit)',
     username: 'adam',
-    profilePhoto: '/static/assets/avatar-3.jpg',
+    profilePhoto: '/static/assets/adam.jpg',
     createdAt: '2018-08-13 01:16:21.077+00',
   },
 
@@ -35,7 +35,7 @@ export const users = {
     id: `user-5`,
     name: 'Ayla Myers',
     username: 'ayla',
-    profilePhoto: '/static/assets/avatar-1.jpg',
+    profilePhoto: '/static/assets/ayla.jpg',
     createdAt: '2018-08-13 01:16:21.077+00',
   },
 
@@ -67,7 +67,7 @@ export const users = {
     id: 'user-8',
     username: 'rebekah',
     name: 'Rebekah',
-    profilePhoto: '/static/assets/avatar-3.png',
+    profilePhoto: '/static/assets/rebekah.jpg',
     createdAt: '2018-08-13 01:16:21.077+00',
   },
 };
@@ -142,7 +142,7 @@ export const chats = {
   normal: [
     {
       id: '3',
-      unread: 2,
+      unread: 442,
       createdAt: '2018-08-13 01:16:21.077+00',
       group: {
         name: 'General Chat',
@@ -241,7 +241,7 @@ export const chats = {
     },
     {
       id: '5',
-      unread: 0,
+      unread: 2,
       createdAt: '2018-08-13 01:16:21.077+00',
       user: users.adamg,
       messages: [
@@ -309,7 +309,7 @@ export const chats = {
       user: users.ayla,
       group: {
         name: `Ayla's Squad`,
-        groupPhoto: '/static/assets/avatar-8.jpg',
+        groupPhoto: '/static/assets/ayla.jpg',
         createdAt: '2018-08-13 01:16:21.077+00',
       },
       messages: [],
