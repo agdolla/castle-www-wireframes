@@ -36,7 +36,10 @@ export default class ActivityUpdates extends React.Component {
         <div className={STYLES_CONTAINER}>
           <div className={STYLES_EMPTY}>
             Start&nbsp;
-            <strong style={{ color: 'magenta' }}>making games</strong>!
+            <strong style={{ color: 'magenta', cursor: 'pointer' }}>
+              making games
+            </strong>
+            !
           </div>
         </div>
       );
