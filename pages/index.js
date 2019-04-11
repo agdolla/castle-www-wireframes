@@ -298,7 +298,13 @@ export default class IndexPage extends React.Component {
       }
     }
 
-    this.setState({ chats }, () => {});
+    this.setState({ chats }, () => {
+      if (!this._chatWindow) {
+        return;
+      }
+
+      this._chatWindow.scroll();
+    });
   };
 
   _handleSubmit = text => {
