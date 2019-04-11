@@ -101,7 +101,7 @@ export class ChatColumn extends React.Component {
           <span
             className={STYLES_CHAT_ICON}
             style={{ backgroundColor: 'rgb(255, 0, 235)' }}>
-            <SVG.Plus size="16px" />
+            <SVG.AddChat size="16px" />
           </span>
         </div>
       </div>

@@ -13,7 +13,6 @@ const STYLES_EMPTY = css`
 `;
 
 const STYLES_CONTAINER = css`
-  max-height: 224px;
   overflow-y: scroll;
   width: 100%;
   display: block;
@@ -155,6 +154,7 @@ export default class ActivityUpdates extends React.Component {
     return (
       <div
         className={STYLES_CONTAINER}
+        style={{ height: this.props.activity.length ? 168 : null }}
         ref={c => {
           this._container = c;
         }}>
