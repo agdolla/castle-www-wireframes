@@ -43,7 +43,7 @@ const STYLES_LEFT_CHAT_BOUNDS = css`
   background: #ffffff;
   color: #000000;
   border-radius: 12px;
-  font-size: 14px;
+  font-size: 12px;
 `;
 
 export const LeftChatBubble = props => {
@@ -108,7 +108,7 @@ const STYLES_RIGHT_CHAT_BOUNDS = css`
   background: rgb(255, 0, 235);
   border-radius: 12px;
   color: #fff;
-  font-size: 14px;
+  font-size: 12px;
 `;
 
 export const RightChatBubble = props => {
