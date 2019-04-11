@@ -375,7 +375,8 @@ export default class IndexPage extends React.Component {
                       )}`}
                 </ChatSessionComponent>
               </HeaderBarText>
-              <IconButton svg={<SVG.Home height="20px" />} />
+              <IconButton svg={<SVG.Profile size="16px" />} />
+              <IconButton svg={<SVG.Home height="16px" />} />
             </HeaderBar>
 
             <ActivityUpdates
@@ -428,14 +429,14 @@ export default class IndexPage extends React.Component {
                 )}
               </ChatSessionComponent>
             </HeaderBarText>
-            <IconButton svg={<SVG.Settings size="20px" />} />
+            <IconButton svg={<SVG.Settings size="16px" />} />
           </HeaderBar>
         }
         bottom={
           !selectedChat.isReadOnly ? (
             <ActionsBar>
               <ChatInput onSubmit={this._handleSubmit} />
-              <IconButton svg={<SVG.Smile size="20px" />} />
+              <IconButton svg={<SVG.Smile size="16px" />} />
             </ActionsBar>
           ) : null
         }>
