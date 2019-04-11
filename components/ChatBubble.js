@@ -54,7 +54,9 @@ export const LeftChatBubble = props => {
         style={{ backgroundImage: `url(${props.src})` }}
       />
       <div className={STYLES_LEFT_CHAT_BUBBLE_MESSAGE}>
-        <div className={STYLES_LEFT_CHAT_BUBBLE_MESSAGE_TITLE}>{props.name}</div>
+        <div className={STYLES_LEFT_CHAT_BUBBLE_MESSAGE_TITLE}>
+          {props.name} • 3:33 pm
+        </div>
         <div className={STYLES_LEFT_CHAT_BUBBLE_MESSAGE_BOTTOM}>
           <span className={STYLES_LEFT_CHAT_BOUNDS}>{props.children}</span>
         </div>
@@ -113,7 +115,9 @@ export const RightChatBubble = props => {
   return (
     <div className={STYLES_RIGHT_CHAT_BUBBLE}>
       <div className={STYLES_RIGHT_CHAT_BUBBLE_MESSAGE}>
-        <div className={STYLES_RIGHT_CHAT_BUBBLE_MESSAGE_TITLE}>{props.name}</div>
+        <div className={STYLES_RIGHT_CHAT_BUBBLE_MESSAGE_TITLE}>
+          {props.name} • 3:33 pm
+        </div>
         <div className={STYLES_RIGHT_CHAT_BUBBLE_MESSAGE_BOTTOM}>
           <span className={STYLES_RIGHT_CHAT_BOUNDS}>{props.children}</span>
         </div>

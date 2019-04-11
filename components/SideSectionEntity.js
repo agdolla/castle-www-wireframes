@@ -77,8 +77,13 @@ export default class SideSectionEntity extends React.Component {
       <div
         className={STYLES_CONTAINER}
         onClick={this.props.onClick}
-        style={{ backgroundColor: this.props.isSelected ? 'magenta' : undefined }}>
-        <span className={STYLES_LEFT} style={{ backgroundImage: `url(${this.props.src})` }} />
+        style={{
+          backgroundColor: this.props.isSelected ? 'magenta' : undefined
+        }}>
+        <span
+          className={STYLES_LEFT}
+          style={{ backgroundImage: `url(${this.props.src})` }}
+        />
         <span className={STYLES_RIGHT}>
           <div className={STYLES_TITLE}>
             {this.props.title}{' '}
@@ -88,7 +93,9 @@ export default class SideSectionEntity extends React.Component {
               </NotificationPill>
             ) : null}
           </div>
-          {this.props.author ? <div className={STYLES_USER}>{this.props.author}</div> : null}
+          {this.props.author ? (
+            <div className={STYLES_USER}>{this.props.author}</div>
+          ) : null}
           <div className={STYLES_META}>{this.props.children}</div>
         </span>
       </div>

@@ -60,7 +60,9 @@ export default class SideSectionLayout extends React.Component {
     return (
       <div className={STYLES_SIDE_SECTION_LAYOUT} style={this.props.style}>
         {this.props.header ? (
-          <div className={STYLES_SIDE_SECTION_LAYOUT_HEADER}>{this.props.header}</div>
+          <div className={STYLES_SIDE_SECTION_LAYOUT_HEADER}>
+            {this.props.header}
+          </div>
         ) : null}
         <div
           className={STYLES_SIDE_SECTION_LAYOUT_MIDDLE}
@@ -70,7 +72,9 @@ export default class SideSectionLayout extends React.Component {
           {this.props.children}
         </div>
         {this.props.bottom ? (
-          <div className={STYLES_SIDE_SECTION_LAYOUT_BOTTOM}>{this.props.bottom}</div>
+          <div className={STYLES_SIDE_SECTION_LAYOUT_BOTTOM}>
+            {this.props.bottom}
+          </div>
         ) : null}
       </div>
     );

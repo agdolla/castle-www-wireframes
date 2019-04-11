@@ -22,6 +22,12 @@ import { ChatColumn, UserSection } from '~/components/ChatColumn';
 
 import SideSectionLayout from '~/components/SideSectionLayout';
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 const STYLES_ICON_BUTTON = css`
   width: 48px;
   height: 56px;
@@ -116,25 +122,81 @@ const STYLES_CASTLE = css`
   cursor: pointer;
 `;
 
+const ACTIVITY_TYPES = ['MENTION', 'PLAY'];
+
 export default class IndexPage extends React.Component {
   _chatWindow;
+  _activityWindow;
 
   state = {
     selectedChatId: '4',
     popover: null,
     search: '',
     searchResults: [],
+    activity: [],
+    activityCount: 0,
     announcements: [...Fixtures.chats.castle],
-    chats: [...Fixtures.chats.normal],
+    chats: [...Fixtures.chats.normal]
   };
+
+  componentDidMount() {
+    const addActivity = () => {
+      window.setTimeout(() => {
+        const type = ACTIVITY_TYPES[getRandomInt(0, 1)];
+        const user =
+          Fixtures.usersList[getRandomInt(0, Fixtures.usersList.length - 1)];
+        const activity = [...this.state.activity];
+        activity.push({
+          date: new Date(),
+          type,
+          user
+        });
+
+        this.setState({
+          activity,
+          activityCount: !this.state.selectedChatId
+            ? this.state.activityCount + 1
+            : 0
+        });
+
+        if (type === 'MENTION') {
+          this._handleChatFromUser({
+            text: (
+              <span>
+                Hey are you there{' '}
+                <strong style={{ color: '#00CED1' }}>@jim</strong>
+              </span>
+            ),
+            user
+          });
+        }
+
+        if (this._activityWindow) {
+          this._activityWindow.scroll();
+        }
+
+        addActivity();
+      }, 2300);
+    };
+
+    addActivity();
+  }
 
   _handleSelectChat = entity => {
     if (!entity) {
-      return this.setState({ selectedChatId: null, popover: null });
+      return this.setState({
+        selectedChatId: null,
+        popover: null,
+        activityCount: 0
+      });
     }
 
     if (this.state.selectedChatId === entity.id) {
-      return this.setState({ selectedChatId: null, popover: null });
+      return this.setState({
+        selectedChatId: null,
+        popover: null,
+        activityCount: 0
+      });
     }
 
     this.setState({ selectedChatId: entity.id, popover: null }, () => {
@@ -157,7 +219,7 @@ export default class IndexPage extends React.Component {
       return this.setState({
         selectedChatId: found.id,
         search: '',
-        searchResults: [],
+        searchResults: []
       });
     }
 
@@ -168,14 +230,14 @@ export default class IndexPage extends React.Component {
       unread: 0,
       createdAt: '2018-08-13 01:16:21.077+00',
       user: user,
-      messages: [],
+      messages: []
     });
 
     this.setState({
       search: '',
       searchResults: [],
       chats,
-      selectedChatId: chatId,
+      selectedChatId: chatId
     });
   };
 
@@ -202,6 +264,43 @@ export default class IndexPage extends React.Component {
     this.setState({ popover: type, search: '', searchResults: [] });
   };
 
+  _handleChatFromUser = ({ text, user }) => {
+    const message = {
+      id: `message-${new Date().getTime()}`,
+      text,
+      user,
+      createdAt: Strings.createDate()
+    };
+
+    const selectedChat = [
+      ...this.state.announcements,
+      ...this.state.chats
+    ].find(c => c.id === '3');
+
+    if (!selectedChat) {
+      return;
+    }
+
+    const messages = [...selectedChat.messages];
+    messages.push(message);
+
+    const updatedSelectedChat = {
+      ...selectedChat,
+      messages,
+      unread: selectedChat.unread + 1
+    };
+    const chats = [...this.state.chats];
+
+    for (let i = 0; i < chats.length; i++) {
+      if (chats[i].id === updatedSelectedChat.id) {
+        chats[i] = updatedSelectedChat;
+        break;
+      }
+    }
+
+    this.setState({ chats }, () => {});
+  };
+
   _handleSubmit = text => {
     if (Strings.isEmpty(text)) {
       return;
@@ -211,12 +310,12 @@ export default class IndexPage extends React.Component {
       id: `message-${new Date().getTime()}`,
       text,
       createdAt: Strings.createDate(),
-      user: Fixtures.users.viewer,
+      user: Fixtures.users.viewer
     };
 
     const selectedChat = [
       ...this.state.announcements,
-      ...this.state.chats,
+      ...this.state.chats
     ].find(c => c.id === this.state.selectedChatId);
 
     if (!selectedChat) {
@@ -248,11 +347,13 @@ export default class IndexPage extends React.Component {
   render() {
     const selectedChat = [
       ...this.state.announcements,
-      ...this.state.chats,
+      ...this.state.chats
     ].find(c => c.id === this.state.selectedChatId);
 
     const topElement = (
-      <UserSection onChatSelect={this._handleSelectChat}>
+      <UserSection
+        onChatSelect={this._handleSelectChat}
+        activityCount={this.state.activityCount}>
         {selectedChat ? (
           <React.Fragment>
             <HeaderBar>
@@ -260,13 +361,24 @@ export default class IndexPage extends React.Component {
                 <ChatSessionComponent
                   top={`Your activity`}
                   style={{ color: '#fff' }}>
-                  No updates
+                  {!this.state.activity.length
+                    ? `No updates`
+                    : `${this.state.activity.length} new ${Strings.pluralize(
+                        'update',
+                        this.state.activity.length
+                      )}`}
                 </ChatSessionComponent>
               </HeaderBarText>
               <IconButton svg={<SVG.Home height="20px" />} />
             </HeaderBar>
 
-            <ActivityUpdates activity={this.state.activity} />
+            <ActivityUpdates
+              ref={c => {
+                this._activityWindow = c;
+              }}
+              activity={this.state.activity}
+              activityCount={this.state.activityCount}
+            />
           </React.Fragment>
         ) : null}
       </UserSection>

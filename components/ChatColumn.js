@@ -126,10 +126,11 @@ const STYLES_USER_SECTION_LEFT = css`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px 8px 16px 8px;
+  padding: 12px 8px 16px 8px;
   width: 64px;
   flex-shrink: 0;
   align-self: stretch;
+  position: relative;
 `;
 
 const STYLES_USER_SECTION_RIGHT = css`
@@ -168,15 +169,21 @@ export class UserSection extends React.Component {
         <div
           className={STYLES_USER_SECTION_LEFT}
           style={{
-            boxShadow: this.props.children ? `inset -1px 0 0 #3d3d3d` : null,
+            boxShadow: this.props.children ? `inset -1px 0 0 #3d3d3d` : null
           }}>
           <span
             className={STYLES_CHAT_ICON}
             onClick={() =>
               this.props.onChatSelect(!this.props.children ? { id: '3' } : null)
             }
-            style={{ backgroundImage: `url(/static/assets/jim.jpg)` }}
-          />
+            style={{ backgroundImage: `url(/static/assets/jim.jpg)` }}>
+            {this.props.activityCount > 0 ? (
+              <NotificationPill
+                style={{ position: 'absolute', right: `-4px`, top: `-6px` }}>
+                {this.props.activityCount}
+              </NotificationPill>
+            ) : null}
+          </span>
         </div>
         {this.props.children ? (
           <div className={STYLES_USER_SECTION_RIGHT}>{this.props.children}</div>
