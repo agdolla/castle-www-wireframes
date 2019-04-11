@@ -7,8 +7,8 @@ import * as Fixtures from '~/common/fixtures';
 
 import { css, styled } from 'react-emotion';
 
+import ActivityUpdates from '~/components/ActivityUpdates';
 import ChatSessionComponent from '~/components/ChatSessionComponent';
-import SideSectionHeader from '~/components/SideSectionHeader';
 import SideSectionEntity from '~/components/SideSectionEntity';
 
 import PopoverChat from '~/components/PopoverChat';
@@ -23,15 +23,16 @@ import { ChatColumn, UserSection } from '~/components/ChatColumn';
 import SideSectionLayout from '~/components/SideSectionLayout';
 
 const STYLES_ICON_BUTTON = css`
-  height: 48px;
   width: 48px;
+  height: 56px;
+  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   color: #f3f3f3;
   transition: 200ms ease color;
   cursor: pointer;
-  flex-shrink: 0;
+  box-shadow: inset 1px 0 0 #3d3d3d;
 
   :hover {
     color: rgb(255, 0, 235);
@@ -58,11 +59,24 @@ const STYLES_HEADER_BAR_TEXT = css`
   font-weight: 700;
   display: flex;
   align-items: center;
-  box-shadow: 1px 0 0 #3d3d3d;
 `;
 
 const HeaderBarText = props => {
   return <span className={STYLES_HEADER_BAR_TEXT}>{props.children}</span>;
+};
+
+const STYLES_HEADER = css`
+  min-height: 56px;
+  flex-shrink: 0;
+  width: 100%;
+  box-shadow: inset 0 -1px 0 #3d3d3d;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const HeaderBar = props => {
+  return <header className={STYLES_HEADER}>{props.children}</header>;
 };
 
 const STYLES_ACTIONS = css`
@@ -77,20 +91,6 @@ const STYLES_ACTIONS = css`
 
 const ActionsBar = props => {
   return <div className={STYLES_ACTIONS}>{props.children}</div>;
-};
-
-const STYLES_HEADER = css`
-  min-height: 48px;
-  flex-shrink: 0;
-  width: 100%;
-  box-shadow: inset 0 -1px 0 #3d3d3d;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const HeaderBar = props => {
-  return <header className={STYLES_HEADER}>{props.children}</header>;
 };
 
 const STYLES_NAV = css`
@@ -171,13 +171,21 @@ export default class IndexPage extends React.Component {
       messages: [],
     });
 
-    this.setState({ search: '', searchResults: [], chats, selectedChatId: chatId });
+    this.setState({
+      search: '',
+      searchResults: [],
+      chats,
+      selectedChatId: chatId,
+    });
   };
 
   _handleSearchChange = e => {
     const searchResults = [];
     Fixtures.usersList.forEach(u => {
-      if (u.username.includes(e.target.value) || u.name.includes(e.target.value)) {
+      if (
+        u.username.includes(e.target.value) ||
+        u.name.includes(e.target.value)
+      ) {
         searchResults.push(u);
       }
     });
@@ -206,9 +214,10 @@ export default class IndexPage extends React.Component {
       user: Fixtures.users.viewer,
     };
 
-    const selectedChat = [...this.state.announcements, ...this.state.chats].find(
-      c => c.id === this.state.selectedChatId
-    );
+    const selectedChat = [
+      ...this.state.announcements,
+      ...this.state.chats,
+    ].find(c => c.id === this.state.selectedChatId);
 
     if (!selectedChat) {
       return;
@@ -237,17 +246,30 @@ export default class IndexPage extends React.Component {
   };
 
   render() {
-    const selectedChat = [...this.state.announcements, ...this.state.chats].find(
-      c => c.id === this.state.selectedChatId
-    );
+    const selectedChat = [
+      ...this.state.announcements,
+      ...this.state.chats,
+    ].find(c => c.id === this.state.selectedChatId);
 
     const topElement = (
-      <React.Fragment>
-        <nav className={STYLES_NAV} style={{ justifyContent: !selectedChat ? 'center' : null }}>
-          <span className={STYLES_CASTLE} />
-        </nav>
-        <UserSection isActivityHidden={!selectedChat} onChatSelect={this._handleSelectChat} />
-      </React.Fragment>
+      <UserSection onChatSelect={this._handleSelectChat}>
+        {selectedChat ? (
+          <React.Fragment>
+            <HeaderBar>
+              <HeaderBarText>
+                <ChatSessionComponent
+                  top={`Your activity`}
+                  style={{ color: '#fff' }}>
+                  No updates
+                </ChatSessionComponent>
+              </HeaderBarText>
+              <IconButton svg={<SVG.Home height="20px" />} />
+            </HeaderBar>
+
+            <ActivityUpdates activity={this.state.activity} />
+          </React.Fragment>
+        ) : null}
+      </UserSection>
     );
 
     const leftElement = (
@@ -274,23 +296,21 @@ export default class IndexPage extends React.Component {
                   selectedChat.group
                     ? selectedChat.group.name
                     : selectedChat.messages && selectedChat.messages.length
-                    ? selectedChat.messages[selectedChat.messages.length - 1].user.name
+                    ? selectedChat.messages[selectedChat.messages.length - 1]
+                        .user.name
                     : selectedChat.user.name
                 }>
                 {Strings.getTimeSinceToday(
                   selectedChat.group
                     ? selectedChat.group.createdAt
                     : selectedChat.messages && selectedChat.messages.length
-                    ? selectedChat.messages[selectedChat.messages.length - 1].createdAt
+                    ? selectedChat.messages[selectedChat.messages.length - 1]
+                        .createdAt
                     : selectedChat.createdAt
                 )}
               </ChatSessionComponent>
             </HeaderBarText>
-            <IconButton
-              isActive={this.state.popover === 'CHAT'}
-              onClick={() => this._handleSelectPopover('CHAT')}
-              svg={<SVG.Settings size="20px" />}
-            />
+            <IconButton svg={<SVG.Settings size="20px" />} />
           </HeaderBar>
         }
         bottom={
@@ -305,14 +325,20 @@ export default class IndexPage extends React.Component {
           {selectedChat.messages.map(c => {
             if (c.user.id === Fixtures.users.viewer.id) {
               return (
-                <RightChatBubble key={c.id} src={c.user.profilePhoto} name={c.user.name}>
+                <RightChatBubble
+                  key={c.id}
+                  src={c.user.profilePhoto}
+                  name={c.user.name}>
                   {c.text}
                 </RightChatBubble>
               );
             }
 
             return (
-              <LeftChatBubble key={c.id} src={c.user.profilePhoto} name={c.user.name}>
+              <LeftChatBubble
+                key={c.id}
+                src={c.user.profilePhoto}
+                name={c.user.name}>
                 {c.text}
               </LeftChatBubble>
             );

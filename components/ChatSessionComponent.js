@@ -17,9 +17,11 @@ const STYLES_CHAT_SESSION_COMPONENT_BOTTOM = css`
 
 const ChatSessionComponent = props => {
   return (
-    <div className={STYLES_CHAT_SESSION_COMPONENT}>
+    <div className={STYLES_CHAT_SESSION_COMPONENT} style={props.style}>
       <div className={STYLES_CHAT_SESSION_COMPONENT_TOP}>{props.top}</div>
-      <div className={STYLES_CHAT_SESSION_COMPONENT_BOTTOM}>{props.children}</div>
+      <div className={STYLES_CHAT_SESSION_COMPONENT_BOTTOM}>
+        {props.children}
+      </div>
     </div>
   );
 };
