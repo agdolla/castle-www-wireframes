@@ -1,13 +1,6 @@
 {
   "presets": [
-    [
-      "next/babel",
-      {
-        "transform-runtime": {
-          "useESModules": false
-        }
-      }
-    ]
+    "next/babel"
   ],
   "plugins": [
     ["emotion", {

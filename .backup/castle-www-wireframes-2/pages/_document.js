@@ -1,6 +1,6 @@
+import Document, { Head, Main, NextScript } from 'next/document';
 import { extractCritical } from 'emotion-server';
 
-import Document, { Head, Main, NextScript } from 'next/document';
 import injectGlobalStyles from '~/common/styles/global';
 
 injectGlobalStyles();

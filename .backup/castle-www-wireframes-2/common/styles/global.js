@@ -3,22 +3,7 @@ import { injectGlobal } from 'react-emotion';
 /* prettier-ignore */
 export default () => injectGlobal`
   @font-face {
-    font-family: 'logo';
-    src: url('/static/fonts/Font-Logo-RTAliasBold.woff');
-  }
-
-  @font-face {
-    font-family: 'heading';
-    src: url('/static/fonts/RTAliasGrotesk-Bold.woff');
-  }
-
-  @font-face {
-    font-family: 'brand';
-    src: url('/static/fonts/RTAliasGrotesk-Regular.woff');
-  }
-
-  @font-face {
-    font-family: 'mono';
+    font-family: 'mono-font';
     src: url('/static/fonts/Font-Mono-SFMono.woff');
   }
 
@@ -48,15 +33,9 @@ export default () => injectGlobal`
   }
 
   html, body {
-    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, sans-serif;
+    background: black;
     font-size: 16px;
-    font-weight: 400;
-    background: #f3f3f3;
-    color: #1a1717;
-    text-rendering: optimizeLegibility;
-
-    @media (max-width: 768px) {
-      font-size: 12px;
-    }
+    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica,
+    ubuntu, roboto, noto, segoe ui, arial, sans-serif;
   }
 `;

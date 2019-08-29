@@ -1,11 +1,34 @@
-# Castle Chat
+# The Website
 
-To view the prototype go here:
+- Keep things simple
+- Delete what you want
 
-https://castle-www-prototype-1-xdpr.onrender.com/
+## Developing
 
-## What is the expectation here?
+```sh
+npm install
+npm run dev
+```
 
-- Feel free to share any feedback!
-- If people like this direction we will probably go with it.
-- Everything is fair game to comment on.
+Visit `localhost:1337`
+
+## Deployment
+
+The website will auto-deploy when you push to master.
+
+## Code style
+
+Use an editor with prettier already integrated, or run `npm run prettier` on staged files.
+
+#### .prettierrc
+
+```js
+{
+  "printWidth": 100,
+  "tabWidth": 2,
+  "singleQuote": true,
+  "jsxBracketSameLine": true,
+  "trailingComma": "es5",
+  "arrowParens": "always"
+}
+```
