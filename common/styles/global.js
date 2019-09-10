@@ -51,8 +51,8 @@ export default () => injectGlobal`
     font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, sans-serif;
     font-size: 16px;
     font-weight: 400;
-    background: #f3f3f3;
-    color: #1a1717;
+    background: #111;
+    color: #fff;
     text-rendering: optimizeLegibility;
 
     @media (max-width: 768px) {

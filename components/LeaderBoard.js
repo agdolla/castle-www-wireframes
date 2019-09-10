@@ -3,24 +3,60 @@ import React, { useState } from 'react';
 import { css } from 'react-emotion';
 
 const STYLES_LAYOUT = css`
-  background: blue;
+  background: #fff;
   width: 100%;
-`;
-
-const STYLES_LAYOUT_ITEM = css`
   background: red;
 `;
 
-const LeaderBoard = () => {
+const STYLES_LAYOUT_ITEM = css`
+  margin-bottom: 16px;
+`;
+
+const STYLES_TITLE = css`
+  font-size: 18px;
+`;
+
+const STYLES_DESCRIPTION = css`
+  font-size: 12px;
+`;
+
+const STYLES_HEADING = css`
+  margin-bottom: 24px;
+`;
+
+const LeaderBoard = ({ title }) => {
   return (
     <div className={STYLES_LAYOUT}>
-      <div className={STYLES_LAYOUT_ITEM}>AAA</div>
-      <div className={STYLES_LAYOUT_ITEM}>AAA</div>
-      <div className={STYLES_LAYOUT_ITEM}>AAA</div>
-      <div className={STYLES_LAYOUT_ITEM}>AAA</div>
-      <div className={STYLES_LAYOUT_ITEM}>AAA</div>
-      <div className={STYLES_LAYOUT_ITEM}>AAA</div>
-      <div className={STYLES_LAYOUT_ITEM}>AAA</div>
+      <h2 className={STYLES_HEADING}>{title}</h2>
+      <div className={STYLES_LAYOUT_ITEM}>
+        <h3 className={STYLES_TITLE}>Title Text</h3>
+        <p className={STYLES_DESCRIPTION}>Description Text -- Meta Text</p>
+      </div>
+
+      <div className={STYLES_LAYOUT_ITEM}>
+        <h3 className={STYLES_TITLE}>Title Text</h3>
+        <p className={STYLES_DESCRIPTION}>Description Text -- Meta Text</p>
+      </div>
+
+      <div className={STYLES_LAYOUT_ITEM}>
+        <h3 className={STYLES_TITLE}>Title Text</h3>
+        <p className={STYLES_DESCRIPTION}>Description Text -- Meta Text</p>
+      </div>
+
+      <div className={STYLES_LAYOUT_ITEM}>
+        <h3 className={STYLES_TITLE}>Title Text</h3>
+        <p className={STYLES_DESCRIPTION}>Description Text -- Meta Text</p>
+      </div>
+
+      <div className={STYLES_LAYOUT_ITEM}>
+        <h3 className={STYLES_TITLE}>Title Text</h3>
+        <p className={STYLES_DESCRIPTION}>Description Text -- Meta Text</p>
+      </div>
+
+      <div className={STYLES_LAYOUT_ITEM}>
+        <h3 className={STYLES_TITLE}>Title Text</h3>
+        <p className={STYLES_DESCRIPTION}>Description Text -- Meta Text</p>
+      </div>
     </div>
   );
 };

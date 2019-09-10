@@ -6,34 +6,30 @@ const NAVIGATION_BACKGROUND = `#000`;
 const BODY_BACKGROUND = `#111`;
 
 const STYLES_LAYOUT = css`
-  height: 100vh;
+  background: ${BODY_BACKGROUND};
   width: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  padding-left: 188px;
 `;
 
 const STYLES_LEFT = css`
   flex-shrink: 0;
-  width: 288px;
+  width: 188px;
   height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
   background: ${NAVIGATION_BACKGROUND};
 `;
 
-const STYLES_RIGHT = css`
-  min-width: 10%;
-  width: 100%;
-  height: 100%;
-  background: ${BODY_BACKGROUND};
-`;
-
-const PageLayout = ({ leftElement, children }) => {
+const PageLayout = ({ leftElement, headerElement, children }) => {
   const [greeting, setGreeting] = useState('Hello Castle Function Component!');
 
   return (
     <div className={STYLES_LAYOUT}>
       <div className={STYLES_LEFT}>{leftElement}</div>
-      <div className={STYLES_RIGHT}>{children}</div>
+      {headerElement}
+      {children}
     </div>
   );
 };
