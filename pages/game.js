@@ -8,7 +8,12 @@ export default class GamePage extends React.Component {
   render() {
     return (
       <Page title="GAME" description="CHANGE ME.">
-        Hello World
+        <div>Game preview</div>
+        <div>Game Title</div>
+        <div>User byline</div>
+        <div>Download castle client and play</div>
+        <div>Copy to clipboard</div>
+        <div>Posts</div>
       </Page>
     );
   }

@@ -8,7 +8,9 @@ export default class ProfilePage extends React.Component {
   render() {
     return (
       <Page title="PERSON'S Profile" description="CHANGE ME">
-        Hello World
+        <div>User information</div>
+        <div>Games made</div>
+        <div>Posts</div>
       </Page>
     );
   }

@@ -31,13 +31,6 @@ const STYLES_ROOT_RIGHT = css`
   font-size: 12px;
 `;
 
-const STYLES_BRAND = css`
-  font-family: 'logo';
-  font-size: 16px;
-  margin-right: 48px;
-  margin-bottom: 4px;
-`;
-
 export default class PostPage extends React.Component {
   state = {
     value: Value.fromJSON(Fixtures.DraftPost),
@@ -48,15 +41,14 @@ export default class PostPage extends React.Component {
   };
 
   render() {
+    const title = 'The Uniting Of The Tribes';
+    const user = { name: `Tiffany Zhong`, photoUrl: `url(/static/avatar-author.png)` };
+
     return (
       <Page title="POST" description="CHANGE ME">
         <div className={STYLES_ROOT}>
           <div className={STYLES_ROOT_LEFT}>
-            <EntityEditorPreview
-              title="The Uniting Of The Tribes"
-              user={{ name: `Tiffany Zhong`, photoUrl: `url(/static/avatar-author.png)` }}
-              value={this.state.value}
-            />
+            <EntityEditorPreview title={title} user={user} value={this.state.value} />
           </div>
           <div className={STYLES_ROOT_RIGHT}>
             <EntityEditor value={this.state.value} onChange={this.onChange} />
