@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-import PageLayout from '~/components/layouts/PageLayout';
-import PageNavigation from '~/components/PageNavigation';
+import Page from '~/components/Page';
 
 import LeaderBoard from '~/components/LeaderBoard';
 import SmallCard from '~/components/SmallCard';
@@ -10,8 +9,6 @@ import HeroCard from '~/components/HeroCard';
 import { css } from 'react-emotion';
 
 const MAX_WIDTH = 1212;
-const NAVIGATION_BACKGROUND = `#000`;
-const BODY_BACKGROUND = `#111`;
 
 const STYLES_HEADER = css`
   padding: 24px;
@@ -88,9 +85,7 @@ const STYLES_PREVIEW = css`
 export default class IndexPage extends React.Component {
   render() {
     return (
-      <PageLayout
-        leftElement={<PageNavigation />}
-        headerElement={<div className={STYLES_HEADER}>Download Castle | Windows | MacOS</div>}>
+      <Page>
         <div className={STYLES_CONTENT}>
           <div className={STYLES_CONTENT_LEFT}>
             <div style={{ marginBottom: 24 }}>
@@ -161,7 +156,7 @@ export default class IndexPage extends React.Component {
             </span>
           </div>
         </div>
-      </PageLayout>
+      </Page>
     );
   }
 }

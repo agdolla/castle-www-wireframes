@@ -8,7 +8,7 @@ const BODY_BACKGROUND = `#111`;
 const STYLES_LAYOUT = css`
   background: ${BODY_BACKGROUND};
   width: 100%;
-  padding-left: 188px;
+  padding: 0 0 88px 188px;
 `;
 
 const STYLES_LEFT = css`
@@ -22,13 +22,19 @@ const STYLES_LEFT = css`
   background: ${NAVIGATION_BACKGROUND};
 `;
 
+const STYLES_HEADER = css`
+  top: 0;
+  right: 0;
+  background: green;
+`;
+
 const PageLayout = ({ leftElement, headerElement, children }) => {
   const [greeting, setGreeting] = useState('Hello Castle Function Component!');
 
   return (
     <div className={STYLES_LAYOUT}>
       <div className={STYLES_LEFT}>{leftElement}</div>
-      {headerElement}
+      <div className={STYLES_HEADER}>{headerElement}</div>
       {children}
     </div>
   );
