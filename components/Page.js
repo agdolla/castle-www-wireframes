@@ -10,7 +10,7 @@ export default class Page extends React.Component {
   render() {
     return (
       <PageLayout leftElement={<PageNavigation />} headerElement={<PageHeader />}>
-        Hello World
+        {this.props.children}
       </PageLayout>
     );
   }

@@ -276,7 +276,7 @@ export default class PostPage extends React.Component {
     const plainString = Plain.serialize(this.state.value);
 
     return (
-      <Page>
+      <Page title="POST" description="CHANGE ME">
         <div className={STYLES_ROOT}>
           <div className={STYLES_ROOT_LEFT}>
             <div className={STYLES_LAYOUT}>

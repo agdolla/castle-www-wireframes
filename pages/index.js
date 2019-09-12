@@ -10,15 +10,6 @@ import { css } from 'react-emotion';
 
 const MAX_WIDTH = 1212;
 
-const STYLES_HEADER = css`
-  padding: 24px;
-  position: fixed;
-  top: 0;
-  right: 0;
-  background: green;
-  left: 188px;
-`;
-
 const STYLES_CONTENT = css`
   display: flex;
   align-items: flex-start;
@@ -85,7 +76,7 @@ const STYLES_PREVIEW = css`
 export default class IndexPage extends React.Component {
   render() {
     return (
-      <Page>
+      <Page title="INDEX" description="CHANGEME">
         <div className={STYLES_CONTENT}>
           <div className={STYLES_CONTENT_LEFT}>
             <div style={{ marginBottom: 24 }}>
