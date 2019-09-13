@@ -4,7 +4,7 @@ import { css } from 'react-emotion';
 
 const STYLES_HEADER = css`
   padding: 24px;
-  font-size: 100px;
+  font-size: 32px;
 `;
 
 const PageHeader = () => {

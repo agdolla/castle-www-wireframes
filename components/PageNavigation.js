@@ -7,19 +7,31 @@ const STYLES_LAYOUT = css`
   color: white;
 `;
 
+const STYLES_LINK = css`
+  display: block;
+`;
+
+const Link = (props) => {
+  return (
+    <a className={STYLES_LINK} href={props.href}>
+      {props.children}
+    </a>
+  );
+};
+
 const PageNavigation = () => {
   const [greeting, setGreeting] = useState('Hello Castle Function Component!');
 
   return (
     <div className={STYLES_LAYOUT}>
-      <h1>Castle</h1>
-      <div>Log in</div>
-      <div>Games</div>
-      <div>Posts</div>
-      <div>Documentation</div>
-      <div>Tutorials</div>
-      <div>Blog</div>
-      <div>Reviews</div>
+      <Link href="/">Castle</Link>
+      <Link href="/sign-in">Sign in</Link>
+      <Link href="/games">Games</Link>
+      <Link href="/posts">Posts</Link>
+      <Link href="/tutorials">Tutorials</Link>
+      <Link href="/blog">Blog</Link>
+      <Link href="/reviews">Reviews</Link>
+      <Link href="/documentation">Documentation</Link>
     </div>
   );
 };

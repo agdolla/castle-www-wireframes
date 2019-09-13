@@ -31,7 +31,7 @@ const STYLES_ROOT_RIGHT = css`
   font-size: 12px;
 `;
 
-export default class PostPage extends React.Component {
+export default class UserPostPage extends React.Component {
   state = {
     value: Value.fromJSON(Fixtures.DraftPost),
   };

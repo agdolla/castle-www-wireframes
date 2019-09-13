@@ -11,10 +11,10 @@ import { css } from 'react-emotion';
 const MAX_WIDTH = 1212;
 
 const STYLES_CONTENT = css`
+  max-width: ${MAX_WIDTH}px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  max-width: ${MAX_WIDTH}px;
   padding-top: 72px;
 `;
 
