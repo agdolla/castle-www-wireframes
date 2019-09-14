@@ -9,6 +9,28 @@ const STYLES_LAYOUT = css`
 
 const STYLES_LINK = css`
   display: block;
+  text-decoration: none;
+  :visited {
+    color: #fff;
+  }
+
+  :hover {
+    color: #ececec;
+  }
+`;
+
+const STYLES_BRAND = css`
+  font-size: 32px;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  :visited {
+    color: #fff;
+  }
+
+  :hover {
+    color: #ececec;
+  }
 `;
 
 const Link = (props) => {
@@ -24,7 +46,9 @@ const PageNavigation = () => {
 
   return (
     <div className={STYLES_LAYOUT}>
-      <Link href="/">Castle</Link>
+      <a className={STYLES_BRAND} href="/">
+        Castle
+      </a>
       <Link href="/sign-in">Sign in</Link>
       <Link href="/games">Games</Link>
       <Link href="/posts">Posts</Link>

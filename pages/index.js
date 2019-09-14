@@ -129,7 +129,7 @@ export default class IndexPage extends React.Component {
             </div>
           </div>
           <div className={STYLES_CONTENT_RIGHT}>
-            <h2 className={STYLES_GROUP_TITLE}>Latest</h2>
+            <h2 className={STYLES_GROUP_TITLE}>New things</h2>
             <span className={STYLES_SMALL_ELEMENT}>
               <SmallCard />
             </span>
