@@ -57,7 +57,7 @@ export default class DocumentationPage extends React.Component {
 
   render() {
     const title = 'The Uniting Of The Tribes';
-    const user = { name: `Tiffany Zhong`, photoUrl: `url(/static/avatar-author.png)` };
+    const user = Fixtures.USERS_LIST[1];
 
     return (
       <Page title="Castle: Documentation" description="Castle documentation and knowledge base.">

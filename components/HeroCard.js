@@ -40,27 +40,8 @@ const STYLES_GAME_PARAGRAPH = css`
 `;
 
 const STYLES_AVATAR_NAME = css`
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
   background: ${Constants.colors.foreground.secondary};
-`;
-
-const STYLES_AVATAR = css`
-  height: 32px;
-  width: 32px;
-  flex-shrink: 0;
-  background-size: cover;
-  background-position: 50% 50%;
-`;
-
-const STYLES_AVATAR_TEXT = css`
-  font-size: 12px;
-  min-width: 25%;
-  width: 100%;
-  color: ${Constants.colors.foreground.text};
-  padding: 4px;
-  font-weight: 600;
+  display: inline-flex;
 `;
 
 const HeroCard = ({ src, user = {} }) => {
@@ -74,9 +55,6 @@ const HeroCard = ({ src, user = {} }) => {
 
       <div className={STYLES_BOTTOM}>
         <h4 className={STYLES_GAME_HEADING}>Fox Sandbox</h4>
-        <div>
-          <Byline user={user} />
-        </div>
         <p className={STYLES_GAME_PARAGRAPH}>Learn more about our new open world sailing game</p>
       </div>
     </div>

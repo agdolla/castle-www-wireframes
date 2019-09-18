@@ -8,6 +8,8 @@ import { css } from 'react-emotion';
 const STYLES_CARD = css`
   border-radius: 4px;
   text-decoration: none;
+  display: block;
+  margin-bottom: 48px;
   color: ${Constants.colors.background.text};
   :visited {
     color: ${Constants.colors.background.text};

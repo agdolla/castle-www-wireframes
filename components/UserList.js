@@ -46,7 +46,7 @@ const STYLES_AVATAR = css`
   width: 48px;
   background-size: cover;
   background-position: 50% 50%;
-  border-radius: 4px;
+  border-radius: 48px;
   display: inline-flex;
 `;
 

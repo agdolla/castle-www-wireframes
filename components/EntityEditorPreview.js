@@ -4,6 +4,7 @@ import * as Constants from '~/common/constants';
 import { css } from 'react-emotion';
 import { Editor } from 'slate-react';
 
+import Byline from '~/components/Byline';
 import Plain from 'slate-plain-serializer';
 import ReactMarkdown from 'react-markdown';
 import MarkdownPluginBreaks from 'remark-breaks';
@@ -162,31 +163,6 @@ const STYLES_LAYOUT = css`
   }
 `;
 
-const STYLES_BYLINE = css`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 2rem;
-  margin-top: 0.5rem;
-`;
-
-const STYLES_BYLINE_TEXT = css`
-  min-width: 10%;
-  width: 100%;
-  padding-left: 8px;
-`;
-
-const STYLES_AVATAR = css`
-  height: 32px;
-  width: 32px;
-  border-radius: 32px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
-  background: ${Constants.colors.brand};
-  background-size: cover;
-  background-position: 50% 50%;
-  flex-shrink: 0;
-`;
-
 const disallowedTypes = ['html', 'virtualHtml', 'parsedHtml'];
 
 const EntityEditorPreview = ({ value, user, title }) => {
@@ -197,13 +173,8 @@ const EntityEditorPreview = ({ value, user, title }) => {
       <h1 className={STYLES_POST_TITLE} style={{ marginBottom: 0 }}>
         {title}
       </h1>
-      <div className={STYLES_BYLINE}>
-        <span className={STYLES_AVATAR} style={{ backgroundImage: user.photoUrl }} />
-        <span className={STYLES_BYLINE_TEXT}>
-          <strong>{user.name}</strong>
-        </span>
-      </div>
-      <div>
+      <Byline user={user} />
+      <div style={{ marginTop: 48 }}>
         <ReactMarkdown
           source={plainString}
           disallowedTypes={disallowedTypes}

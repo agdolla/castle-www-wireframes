@@ -14,6 +14,7 @@ const STYLES_HERO = css`
   width: 100%;
   max-width: 688px;
   padding: 16px;
+  margin-bottom: 48px;
 `;
 
 const STYLES_ENTITY = css`
@@ -33,6 +34,7 @@ const STYLES_HERO_TITLE = css`
 const STYLES_HERO_PARAGRAPH = css`
   font-size: 16px;
   line-height: 1.5;
+  margin-top: 24px;
 `;
 
 const Posts = () => {

@@ -43,7 +43,7 @@ export default class UserPostPage extends React.Component {
 
   render() {
     const title = 'The Uniting Of The Tribes';
-    const user = { name: `Tiffany Zhong`, photoUrl: `url(/static/avatar-author.png)` };
+    const user = Fixtures.USERS_LIST[1];
 
     return (
       <Page title="POST" description="CHANGE ME">

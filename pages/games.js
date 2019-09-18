@@ -10,7 +10,7 @@ const MAX_WIDTH = 1212;
 
 const STYLES_CONTENT = css`
   max-width: ${MAX_WIDTH}px;
-  padding: 72px 24px 88px 24px;
+  padding: 48px 48px 88px 48px;
 `;
 
 export default class GamesPage extends React.Component {

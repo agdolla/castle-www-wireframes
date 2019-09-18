@@ -12,5 +12,5 @@ export const colors = {
     text: `#f3f3f3`,
   },
   brand: `magenta`,
-  banner: `#d12765`,
+  banner: `magenta`,
 };
