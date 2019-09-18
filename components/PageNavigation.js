@@ -10,6 +10,7 @@ const STYLES_LAYOUT = css`
 
 const STYLES_LINK = css`
   text-decoration: none;
+  font-weight: 600;
   font-size: 20px;
   margin-top: 8px;
   display: block;

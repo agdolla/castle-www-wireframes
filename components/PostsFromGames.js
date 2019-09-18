@@ -42,9 +42,10 @@ const PostsFromGames = ({ posts = [] }) => {
       <div className={STYLES_GROUP_ELEMENTS}>
         {posts.map((each, index) => {
           return (
-            <span
+            <a
               className={STYLES_PREVIEW}
               key={`posts-${index}`}
+              href="/@user/games/slug"
               style={{ backgroundImage: `url(${each.src})` }}
             />
           );

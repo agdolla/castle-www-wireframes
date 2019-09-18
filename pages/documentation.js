@@ -42,6 +42,7 @@ const STYLES_TITLE = css`
 const STYLES_ITEM = css`
   font-size: 12px;
   margin-top: 8px;
+  font-weight: 600;
   line-height: 1.5;
   text-decoration: underline;
 `;
