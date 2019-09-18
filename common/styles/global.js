@@ -1,3 +1,4 @@
+import * as Constants from '~/common/constants';
 import { injectGlobal } from 'react-emotion';
 
 /* prettier-ignore */
@@ -51,8 +52,8 @@ export default () => injectGlobal`
     font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, sans-serif;
     font-size: 16px;
     font-weight: 400;
-    background: #111;
-    color: #fff;
+    background: ${Constants.colors.background.primary};
+    color: ${Constants.colors.background.text};
     text-rendering: optimizeLegibility;
 
     @media (max-width: 768px) {

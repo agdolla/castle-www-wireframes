@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
+import * as Constants from '~/common/constants';
+
+import Byline from '~/components/Byline';
 
 import { css } from 'react-emotion';
 
 const STYLES_CARD = css`
-  background: #fff;
-  color: #000;
   border-radius: 4px;
+  text-decoration: none;
+  color: ${Constants.colors.background.text};
+  :visited {
+    color: ${Constants.colors.background.text};
+  }
+  :hover {
+    color: ${Constants.colors.background.text};
+  }
 `;
 
 const STYLES_TOP = css`
@@ -14,22 +23,19 @@ const STYLES_TOP = css`
 
 const STYLES_DESCRIPTION = css`
   padding: 16px;
-  border-top: 1px solid #222;
+  line-height: 1.5;
+  font-size: 14px;
 `;
 
-const CardPost = () => {
+const CardPost = ({ user = {}, post = {} }) => {
   return (
-    <div className={STYLES_CARD}>
+    <a className={STYLES_CARD} href="/@tiffany-zhong/posts/example">
       <div className={STYLES_TOP}>
-        <h2>Post Title</h2>
-        <p>Ben Roth</p>
+        <h2>{post.title}</h2>
+        <Byline user={user} />
       </div>
-      <p className={STYLES_DESCRIPTION}>
-        Description Description Description Description Description Description Description
-        Description Description Description Description Description Description Description
-        Description Description Description Description Description
-      </p>
-    </div>
+      <p className={STYLES_DESCRIPTION}>{post.description}</p>
+    </a>
   );
 };
 

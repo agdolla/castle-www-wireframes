@@ -1,35 +1,44 @@
 import React, { useState } from 'react';
+import * as Constants from '~/common/constants';
 
 import { css } from 'react-emotion';
 
 const STYLES_LAYOUT = css`
   width: 100%;
-  color: white;
+  padding: 16px;
 `;
 
 const STYLES_LINK = css`
-  display: block;
   text-decoration: none;
+  font-size: 20px;
+  margin-top: 8px;
+  display: block;
+  color: ${Constants.colors.background.text};
+
   :visited {
-    color: #fff;
+    color: ${Constants.colors.background.text};
   }
 
   :hover {
-    color: #ececec;
+    color: ${Constants.colors.background.text};
   }
 `;
 
 const STYLES_BRAND = css`
   font-size: 32px;
-  color: #fff;
   font-weight: 600;
   text-decoration: none;
+  display: block;
+  margin-bottom: 24px;
+  font-family: 'heading';
+  color: ${Constants.colors.background.text};
+
   :visited {
-    color: #fff;
+    color: ${Constants.colors.background.text};
   }
 
   :hover {
-    color: #ececec;
+    color: ${Constants.colors.background.text};
   }
 `;
 

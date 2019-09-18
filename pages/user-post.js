@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as Constants from '~/common/constants';
 import * as Fixtures from '~/common/fixtures';
 
 import Plain from 'slate-plain-serializer';
@@ -25,8 +26,8 @@ const STYLES_ROOT_LEFT = css`
 const STYLES_ROOT_RIGHT = css`
   flex-shrink: 0;
   width: 480px;
-  background: #000;
-  color: #fff;
+  background: ${Constants.colors.foreground.tertiary};
+  color: ${Constants.colors.foreground.text};
   font-family: 'mono';
   font-size: 12px;
 `;

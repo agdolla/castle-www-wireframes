@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import * as Constants from '~/common/constants';
 
 import PluginInsertBlockOnEnter from '~/editor/plugins/insert-block-on-enter';
 
@@ -33,7 +34,7 @@ const STYLES_LINK = css`
 `;
 
 const STYLES_TOP = css`
-  background: #444;
+  background: ${Constants.colors.foreground.secondary};
   height: 48px;
   display: flex;
   align-items: center;

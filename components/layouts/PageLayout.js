@@ -1,12 +1,10 @@
+import * as Constants from '~/common/constants';
 import React, { useState } from 'react';
 
 import { css } from 'react-emotion';
 
-const NAVIGATION_BACKGROUND = `#000`;
-const BODY_BACKGROUND = `#111`;
-
 const STYLES_LAYOUT = css`
-  background: ${BODY_BACKGROUND};
+  background: ${Constants.colors.background.primary};
   width: 100%;
   padding: 0 0 88px 188px;
 `;
@@ -19,13 +17,13 @@ const STYLES_LEFT = css`
   top: 0;
   left: 0;
   bottom: 0;
-  background: ${NAVIGATION_BACKGROUND};
+  background: ${Constants.colors.background.secondary};
 `;
 
 const STYLES_HEADER = css`
   top: 0;
   right: 0;
-  background: green;
+  background: ${Constants.colors.banner};
 `;
 
 const PageLayout = ({ leftElement, headerElement, children }) => {

@@ -1,15 +1,25 @@
 import * as React from 'react';
+import * as Fixtures from '~/common/fixtures';
 
 import Page from '~/components/Page';
-import Posts from '~/components/Posts';
+import PostsFromGames from '~/components/PostsFromGames';
 
 import { css } from 'react-emotion';
 
-export default class GamesPage extends React.Component {
+const MAX_WIDTH = 1212;
+
+const STYLES_CONTENT = css`
+  max-width: ${MAX_WIDTH}px;
+  padding: 72px 24px 88px 24px;
+`;
+
+export default class PostsPage extends React.Component {
   render() {
     return (
       <Page title="Castle: Posts" description="Posts from the people of the Castle community.">
-        <Posts />
+        <div className={STYLES_CONTENT}>
+          <PostsFromGames posts={Fixtures.DATA} />
+        </div>
       </Page>
     );
   }

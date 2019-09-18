@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import * as Constants from '~/common/constants';
 
 import { css } from 'react-emotion';
 import { Editor } from 'slate-react';
@@ -110,7 +111,7 @@ const STYLES_LAYOUT = css`
 
   blockquote {
     padding-left: 24px;
-    border-left: 4px solid #000;
+    border-left: 4px solid ${Constants.colors.foreground.primary};
     margin-bottom: 1rem;
   }
 
@@ -119,7 +120,7 @@ const STYLES_LAYOUT = css`
     height: 1px;
     width: 100%;
     display: block;
-    background: #454545;
+    background: ${Constants.colors.background.tertiary};
     margin-bottom: 1rem;
     margin-top: 1rem;
     :first-child {
@@ -129,7 +130,7 @@ const STYLES_LAYOUT = css`
 
   pre {
     padding: 16px;
-    background: #000;
+    background: ${Constants.colors.background.tertiary};
     display: block;
     white-space: pre-wrap;
     width: 100%;
@@ -139,7 +140,7 @@ const STYLES_LAYOUT = css`
   code {
     font-size: 0.875rem;
     font-family: 'mono';
-    background: #000;
+    background: ${Constants.colors.background.tertiary};
   }
 
   img {
@@ -148,15 +149,15 @@ const STYLES_LAYOUT = css`
   }
 
   a {
-    color: rgba(255, 0, 255, 0.8);
+    color: ${Constants.colors.brand};
     font-weight: 600;
 
     :hover {
-      color: rgba(255, 0, 255, 1);
+      color: ${Constants.colors.brand};
     }
 
     :visited {
-      color: rgba(255, 0, 255, 0.8);
+      color: ${Constants.colors.brand};
     }
   }
 `;
@@ -180,7 +181,7 @@ const STYLES_AVATAR = css`
   width: 32px;
   border-radius: 32px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
-  background: red;
+  background: ${Constants.colors.brand};
   background-size: cover;
   background-position: 50% 50%;
   flex-shrink: 0;

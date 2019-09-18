@@ -1,10 +1,15 @@
 import * as React from 'react';
+import * as Constants from '~/common/constants';
+import * as Fixtures from '~/common/fixtures';
 
 import Page from '~/components/Page';
 
 import LeaderBoard from '~/components/LeaderBoard';
+import UserList from '~/components/UserList';
 import SmallCard from '~/components/SmallCard';
 import HeroCard from '~/components/HeroCard';
+import Games from '~/components/Games';
+import PostsFromGames from '~/components/PostsFromGames';
 
 import { css } from 'react-emotion';
 
@@ -61,12 +66,11 @@ const STYLES_GROUP_ELEMENTS = css`
 `;
 
 const STYLES_PREVIEW = css`
+  background: ${Constants.colors.background.tertiary};
+  color: ${Constants.colors.background.text};
   width: 25%;
   padding: 24px;
-  background: yellow;
   margin-bottom: 16px;
-  color: black;
-  border-right: 2px solid #000;
 
   :last-child {
     border-right: 0px;
@@ -80,70 +84,38 @@ export default class IndexPage extends React.Component {
         <div className={STYLES_CONTENT}>
           <div className={STYLES_CONTENT_LEFT}>
             <div style={{ marginBottom: 24 }}>
-              <HeroCard />
+              <HeroCard src="/static/shots/3.png" user={Fixtures.USERS_LIST[0]} />
             </div>
 
             <span className={STYLES_FULL_ELEMENT}>
               <span className={STYLES_HALF_ELEMENT}>
-                <LeaderBoard title="Ranking" />
+                <LeaderBoard title="Now playing" />
               </span>
               <span className={STYLES_HALF_ELEMENT}>
-                <LeaderBoard title="Cool Creators" />
+                <UserList title="New creators" />
               </span>
             </span>
 
-            <div className={STYLES_GROUP}>
-              <h2 className={STYLES_GROUP_TITLE}>Games</h2>
-              <div className={STYLES_GROUP_ELEMENTS}>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-              </div>
-            </div>
+            <Games games={Fixtures.GAMES} />
 
-            <div className={STYLES_GROUP}>
-              <h2 className={STYLES_GROUP_TITLE}>Posts</h2>
-              <div className={STYLES_GROUP_ELEMENTS}>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-                <span className={STYLES_PREVIEW}>...</span>
-              </div>
-            </div>
+            <PostsFromGames posts={Fixtures.DATA} />
           </div>
           <div className={STYLES_CONTENT_RIGHT}>
-            <h2 className={STYLES_GROUP_TITLE}>New things</h2>
+            <h2 className={STYLES_GROUP_TITLE}>New Releases</h2>
             <span className={STYLES_SMALL_ELEMENT}>
-              <SmallCard />
+              <SmallCard src="/static/games/10.png" />
             </span>
             <span className={STYLES_SMALL_ELEMENT}>
-              <SmallCard />
+              <SmallCard src="/static/games/11.png" />
             </span>
             <span className={STYLES_SMALL_ELEMENT}>
-              <SmallCard />
+              <SmallCard src="/static/games/12.png" />
             </span>
             <span className={STYLES_SMALL_ELEMENT}>
-              <SmallCard />
+              <SmallCard src="/static/games/13.png" />
             </span>
             <span className={STYLES_SMALL_ELEMENT}>
-              <SmallCard />
+              <SmallCard src="/static/games/14.png" />
             </span>
           </div>
         </div>
