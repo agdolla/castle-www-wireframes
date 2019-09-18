@@ -64,7 +64,7 @@ const LeaderBoard = ({ title }) => {
         }
 
         return (
-          <div key={`users-${index}`} className={STYLES_LAYOUT_ITEM}>
+          <a key={`users-${index}`} href="/@user/games/slug-example" className={STYLES_LAYOUT_ITEM}>
             <span className={STYLES_LAYOUT_ITEM_LEFT}>
               <span className={STYLES_AVATAR} style={{ backgroundImage: `url(${each.src})` }} />
             </span>
@@ -72,7 +72,7 @@ const LeaderBoard = ({ title }) => {
               <h3 className={STYLES_TITLE}>Game #{index}</h3>
               <p className={STYLES_DESCRIPTION}>Played {`{AMOUNT}`} times</p>
             </span>
-          </div>
+          </a>
         );
       })}
     </div>

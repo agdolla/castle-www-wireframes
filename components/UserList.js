@@ -15,6 +15,7 @@ const STYLES_LAYOUT_ITEM = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  text-decoration: none;
 `;
 
 const STYLES_LAYOUT_ITEM_LEFT = css`
@@ -62,7 +63,7 @@ const UserList = ({ title }) => {
 
       {Fixtures.USERS_LIST.map((each, index) => {
         return (
-          <div key={`users-${index}`} className={STYLES_LAYOUT_ITEM}>
+          <a key={`users-${index}`} href="/@user" className={STYLES_LAYOUT_ITEM}>
             <span className={STYLES_LAYOUT_ITEM_LEFT}>
               <span
                 className={STYLES_AVATAR}
@@ -78,7 +79,7 @@ const UserList = ({ title }) => {
                 </a>
               </p>
             </span>
-          </div>
+          </a>
         );
       })}
     </div>

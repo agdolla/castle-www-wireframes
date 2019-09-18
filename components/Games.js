@@ -42,7 +42,8 @@ const Games = ({ games = [] }) => {
       <div className={STYLES_GROUP_ELEMENTS}>
         {games.map((each, index) => {
           return (
-            <span
+            <a
+              href="/@user/games/slug-example"
               className={STYLES_PREVIEW}
               key={`game-${index}`}
               style={{ backgroundImage: `url(${each.src})` }}
