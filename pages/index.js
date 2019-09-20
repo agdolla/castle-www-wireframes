@@ -84,7 +84,11 @@ export default class IndexPage extends React.Component {
         <div className={STYLES_CONTENT}>
           <div className={STYLES_CONTENT_LEFT}>
             <div style={{ marginBottom: 24 }}>
-              <HeroCard src="/static/shots/3.png" user={Fixtures.USERS_LIST[0]} />
+              <HeroCard
+                src="/static/shots/3.png"
+                href="/@user/games/slug"
+                user={Fixtures.USERS_LIST[0]}
+              />
             </div>
 
             <span className={STYLES_FULL_ELEMENT}>
@@ -103,19 +107,19 @@ export default class IndexPage extends React.Component {
           <div className={STYLES_CONTENT_RIGHT}>
             <h2 className={STYLES_GROUP_TITLE}>New Releases</h2>
             <span className={STYLES_SMALL_ELEMENT}>
-              <SmallCard src="/static/games/10.png" />
+              <SmallCard src="/static/games/10.png" href="/@user/games/slug" />
             </span>
             <span className={STYLES_SMALL_ELEMENT}>
-              <SmallCard src="/static/games/11.png" />
+              <SmallCard src="/static/games/11.png" href="/@user/games/slug" />
             </span>
             <span className={STYLES_SMALL_ELEMENT}>
-              <SmallCard src="/static/games/12.png" />
+              <SmallCard src="/static/games/12.png" href="/@user/games/slug" />
             </span>
             <span className={STYLES_SMALL_ELEMENT}>
-              <SmallCard src="/static/games/13.png" />
+              <SmallCard src="/static/games/13.png" href="/@user/games/slug" />
             </span>
             <span className={STYLES_SMALL_ELEMENT}>
-              <SmallCard src="/static/games/14.png" />
+              <SmallCard src="/static/games/14.png" href="/@user/games/slug" />
             </span>
           </div>
         </div>

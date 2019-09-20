@@ -25,6 +25,7 @@ const STYLES_PREVIEW = css`
   padding: 24px;
   margin-bottom: 16px;
   margin-right: 16px;
+  display: block;
   background-size: cover;
   background-position: 50% 50%;
 
@@ -42,12 +43,20 @@ const Games = ({ games = [] }) => {
       <div className={STYLES_GROUP_ELEMENTS}>
         {games.map((each, index) => {
           return (
-            <a
-              href="/@user/games/slug-example"
-              className={STYLES_PREVIEW}
-              key={`game-${index}`}
-              style={{ backgroundImage: `url(${each.src})` }}
-            />
+            <div>
+              <a
+                href="/@user/games/slug-example"
+                className={STYLES_PREVIEW}
+                key={`game-${index}`}
+                style={{ backgroundImage: `url(${each.src})` }}
+              />
+              <div style={{ overflowWrap: 'break-word' }}>
+                {` {AVATAR}`}
+                {` {USERNAME}`}
+                {` {PLAY COUNT}`}
+                {` {DOWNLOAD & PLAY NOW}`}
+              </div>
+            </div>
           );
         })}
       </div>

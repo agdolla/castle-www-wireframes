@@ -75,7 +75,7 @@ const UserList = ({ title }) => {
               <p className={STYLES_DESCRIPTION}>
                 Last played{' '}
                 <a className={STYLES_LINK} href="/@remy/games/blastflocks">
-                  {`{GAME_NAME}`} {`{TIME_AGO}`}
+                  {`{GAME_NAME}`} {` {TIME_AGO}`}
                 </a>
               </p>
             </span>

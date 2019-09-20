@@ -20,6 +20,7 @@ const STYLES_GROUP_ELEMENTS = css`
 const STYLES_PREVIEW = css`
   background: ${Constants.colors.background.tertiary};
   color: ${Constants.colors.background.text};
+  display: block;
   width: calc(438px - 16px);
   height: 246px;
   padding: 24px;
@@ -42,12 +43,19 @@ const PostsFromGames = ({ posts = [] }) => {
       <div className={STYLES_GROUP_ELEMENTS}>
         {posts.map((each, index) => {
           return (
-            <a
-              className={STYLES_PREVIEW}
-              key={`posts-${index}`}
-              href="/@user/games/slug"
-              style={{ backgroundImage: `url(${each.src})` }}
-            />
+            <div>
+              <a
+                className={STYLES_PREVIEW}
+                key={`posts-${index}`}
+                href="/@user/games/slug"
+                style={{ backgroundImage: `url(${each.src})` }}
+              />
+              {` {AVATAR}`}
+              {` {USERNAME}`}
+              {` {MESSAGE}`}
+              {` {DOWNLOAD & PLAY NOW}`} {` {PLAY COUNT}`}
+              <br />
+            </div>
           );
         })}
       </div>

@@ -37,21 +37,23 @@ const STYLES_PARAGRAPH = css`
   font-size: 12px;
 `;
 
-const SmallCard = ({ src }) => {
+const SmallCard = ({ src, href }) => {
   const [greeting, setGreeting] = useState('Hello Castle Function Component!');
 
   return (
-    <div className={STYLES_LAYOUT}>
+    <a className={STYLES_LAYOUT} href={href}>
       <div className={STYLES_IMAGE} style={{ backgroundImage: `url(${src})` }}>
         ...
       </div>
       <div className={STYLES_DESCRIPTION}>
         <h4 className={STYLES_TITLE}>{`{GAME_NAME}`}</h4>
         <div>
-          <p className={STYLES_PARAGRAPH}>{`{PARAGRAPH_TEXT}}`}</p>
+          <p className={STYLES_PARAGRAPH}>
+            {`{PARAGRAPH_TEXT}}`} {` {DOWNLOAD & PLAY NOW}`} {` {PLAY COUNT}`}
+          </p>
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 

@@ -9,6 +9,7 @@ const STYLES_LAYOUT = css`
   background: ${Constants.colors.background.tertiary};
   width: 100%;
   position: relative;
+  display: block;
 `;
 
 const STYLES_IMAGE = css`
@@ -44,20 +45,20 @@ const STYLES_AVATAR_NAME = css`
   display: inline-flex;
 `;
 
-const HeroCard = ({ src, user = {} }) => {
+const HeroCard = ({ src, href, user = {} }) => {
   const [greeting, setGreeting] = useState('Hello Castle Function Component!');
 
   return (
-    <div className={STYLES_LAYOUT}>
+    <a className={STYLES_LAYOUT} href={href}>
       <div className={STYLES_IMAGE} style={{ backgroundImage: `url('${src}')` }}>
         ...
       </div>
-
       <div className={STYLES_BOTTOM}>
         <h4 className={STYLES_GAME_HEADING}>Fox Sandbox</h4>
         <p className={STYLES_GAME_PARAGRAPH}>Learn more about our new open world sailing game</p>
       </div>
-    </div>
+      {`{DOWNLOAD & PLAY NOW}`} {` {PLAY COUNT}`}
+    </a>
   );
 };
 

@@ -36,7 +36,10 @@ const CardPost = ({ user = {}, post = {} }) => {
         <h2>{post.title}</h2>
         <Byline user={user} />
       </div>
-      <p className={STYLES_DESCRIPTION}>{post.description}</p>
+      <p className={STYLES_DESCRIPTION}>
+        {post.description}
+        {`{DOWNLOAD & PLAY NOW}`} {`{PLAY COUNT}`}
+      </p>
     </a>
   );
 };
